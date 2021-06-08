@@ -1,0 +1,10 @@
+<button
+(mouseover)="changeBtn(true)"
+(mouseleave)="changeBtn(false)"
+[ngStyle]="{'background-color': bg_color, 'color': color}"
+class="btn h-100"
+(click) = "onClick()"
+>
+<fa-icon *ngIf="icon_text!== undefined && icon_text.length > 0" [icon]="icon"></fa-icon>
+{{ text }}
+</button>

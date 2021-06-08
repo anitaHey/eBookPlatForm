@@ -1,0 +1,12 @@
+button {
+  border: 0;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: #fff;
+}
+
+fa-icon {
+  padding: 5px 10px 5px 5px;
+}
