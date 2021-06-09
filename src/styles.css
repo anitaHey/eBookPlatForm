@@ -365,3 +365,9 @@ textarea {
   position: relative;
   height:100%;
 }
+
+.w-100 {
+  position: relative;
+  width:100%;
+}
+

@@ -2,9 +2,12 @@
 (mouseover)="changeBtn(true)"
 (mouseleave)="changeBtn(false)"
 [ngStyle]="{'background-color': bg_color, 'color': color}"
-class="btn h-100"
+[ngClass]="setting"
+fxLayoutAlign="center center"
+fxLayout="{{layout_text}}"
+class="btn"
 (click) = "onClick()"
 >
 <fa-icon *ngIf="icon_text!== undefined && icon_text.length > 0" [icon]="icon"></fa-icon>
-{{ text }}
+<span>{{ text }}</span>
 </button>
