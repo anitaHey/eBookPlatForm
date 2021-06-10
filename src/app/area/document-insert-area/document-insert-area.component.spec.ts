@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { DocumentInsertAreaComponent } from './document-insert-area.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('DocumentInsertAreaComponent', () => {
+  let component: DocumentInsertAreaComponent;
+  let fixture: ComponentFixture<DocumentInsertAreaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ DocumentInsertAreaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(DocumentInsertAreaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
