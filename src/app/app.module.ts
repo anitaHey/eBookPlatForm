@@ -12,6 +12,7 @@ import { DocumentMainAreaComponent } from './area/document-main-area/document-ma
 import { DocumentInsertAreaComponent } from './area/document-insert-area/document-insert-area.component';
 import { DocumentHeaderAreaComponent } from './area/document-header-area/document-header-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaperComponent } from './area/paper/paper.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DocumentMainAreaComponent,
     DocumentInsertAreaComponent,
     DocumentHeaderAreaComponent,
+    PaperComponent,
   ],
   imports: [
     BrowserModule,

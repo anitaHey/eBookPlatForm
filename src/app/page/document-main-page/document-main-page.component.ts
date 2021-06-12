@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SlideInOutAnimation } from '../../animation/SlideInOutAnimation'
+import { MainSlideInOutAnimation } from '../../animation/MainSlideInOutAnimation'
 import { HostListener } from "@angular/core";
 import { Subject } from 'rxjs';
 
@@ -7,12 +8,14 @@ import { Subject } from 'rxjs';
   selector: 'app-document-main-page',
   templateUrl: './document-main-page.component.html',
   styleUrls: ['./document-main-page.component.css'],
-  animations: [SlideInOutAnimation]
+  animations: [SlideInOutAnimation, MainSlideInOutAnimation]
 })
 export class DocumentMainPageComponent {
-  changingValue: Subject<string> = new Subject();
   screenHeight!: number;
   screenWidth!: number;
+
+  documentMainMinW : string = "300px";
+  documentMainMaxW : string = "300px";
 
   chooseAreaState = 'in';
   constructor() {
@@ -31,11 +34,12 @@ export class DocumentMainPageComponent {
     this.changeChooseSize();
   }
 
-  changeChooseSize(): string {
-    var other = this.chooseAreaState === 'in' ? 384 : 72;
-    var tem = this.screenWidth - other;
-    this.changingValue.next(tem + "px");
+  changeChooseSize(): string[] {
+    var tem = [((this.screenWidth - 384) + "px"), ((this.screenWidth - 72) + "px")];
 
-    return (tem + "px");
+    this.documentMainMinW = tem[0];
+    this.documentMainMaxW = tem[1];
+
+    return tem;
   }
 }
