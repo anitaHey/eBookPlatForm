@@ -1,45 +1,36 @@
 import { Component } from '@angular/core';
 import { SlideInOutAnimation } from '../../animation/SlideInOutAnimation'
 import { MainSlideInOutAnimation } from '../../animation/MainSlideInOutAnimation'
-import { HostListener } from "@angular/core";
-import { Subject } from 'rxjs';
+import { WindowServiceService } from "../../services/window-service.service";
 
 @Component({
   selector: 'app-document-main-page',
   templateUrl: './document-main-page.component.html',
   styleUrls: ['./document-main-page.component.css'],
-  animations: [SlideInOutAnimation, MainSlideInOutAnimation]
+  animations: [SlideInOutAnimation, MainSlideInOutAnimation],
 })
 export class DocumentMainPageComponent {
-  screenHeight!: number;
-  screenWidth!: number;
-
-  documentMainMinW : string = "300px";
-  documentMainMaxW : string = "300px";
+  documentMainMinW : number = 300;
+  documentMainMaxW : number = 300;
 
   chooseAreaState = 'in';
-  constructor() {
-    this.onResize();
-  }
+  constructor(private windowService: WindowServiceService) {
+    this.windowService.updateMainSize().then(res => this.updateMainSize());
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.screenHeight = window.innerHeight;
-    this.screenWidth = window.innerWidth;
-    this.changeChooseSize();
+    windowService.isMainSizeChange.subscribe((value) => {
+      this.updateMainSize();
+    });
   }
 
   toggleChooseArea() {
     this.chooseAreaState = this.chooseAreaState === 'out' ? 'in' : 'out';
-    this.changeChooseSize();
+    this.windowService.setToggleState(this.chooseAreaState);
+    this.windowService.updateMainSize().then(res => this.updateMainSize());
   }
 
-  changeChooseSize(): string[] {
-    var tem = [((this.screenWidth - 384) + "px"), ((this.screenWidth - 72) + "px")];
-
-    this.documentMainMinW = tem[0];
-    this.documentMainMaxW = tem[1];
-
-    return tem;
+  updateMainSize() {
+    var tem = this.windowService.getMainDocumentSize();
+    this.documentMainMinW = tem["min"];
+    this.documentMainMaxW = tem["max"];
   }
 }
