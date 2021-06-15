@@ -6,19 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./document-insert-area.component.css']
 })
 export class DocumentInsertAreaComponent implements OnInit {
-  @Output() chooseClose = new EventEmitter();
-  @Output() chooseOpen = new EventEmitter();
+  @Output() chooseOpen = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  show(): void {
-    this.chooseOpen.emit();
-  }
-
-  noshow(): void {
-    this.chooseClose.emit();
+  show(type: string): void {
+    this.chooseOpen.emit(type);
   }
 }

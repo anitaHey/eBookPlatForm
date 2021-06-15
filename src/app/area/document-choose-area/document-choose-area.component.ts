@@ -12,4 +12,8 @@ export class DocumentChooseAreaComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  addText(){
+
+  }
 }

@@ -1,8 +1,7 @@
 <app-document-header-area></app-document-header-area>
 <div class="down_area" fxLayout="row" fxLayoutAlign="start none">
   <app-document-insert-area
-  (chooseOpen)="toggleChooseArea()"
-  (chooseClose)="toggleChooseArea()"
+  (chooseOpen)="toggleChooseArea($event)"
   ></app-document-insert-area>
   <app-document-choose-area [@slideInOut]="{value: chooseAreaState, params:{max_width: '312px'}} " style="overflow: hidden;"></app-document-choose-area>
   <app-document-main-area

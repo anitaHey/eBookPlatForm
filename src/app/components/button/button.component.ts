@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faImage } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,6 +15,9 @@ export class ButtonComponent implements OnInit {
   @Input() h_color !: string;
   @Input() text !: string;
   @Input() icon_text !: string;
+  @Input() icon_size !: string;
+  @Input() pic_src !: string;
+  @Input() pic_size !: string[];
   @Input() setting !: string;
   @Input() layout_text !: string;
   @Output() btnClick = new EventEmitter();
@@ -47,5 +50,7 @@ export class ButtonComponent implements OnInit {
   getIcon(input: string) {
     if(input == "left_arrow")
       this.icon = faChevronLeft;
+    else if(input == "pic_image")
+      this.icon = faImage;
   }
 }

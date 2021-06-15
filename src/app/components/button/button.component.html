@@ -8,6 +8,17 @@ fxLayout="{{layout_text}}"
 class="btn"
 (click) = "onClick()"
 >
-<fa-icon *ngIf="icon_text!== undefined && icon_text.length > 0" [icon]="icon"></fa-icon>
+<img
+*ngIf="pic_src!== undefined && pic_src.length > 0"
+[src]= "pic_src"
+[ngStyle]="{'width': pic_size[0], 'height': pic_size[1]}"
+ alt="">
+
+<fa-icon
+*ngIf="icon_text!== undefined && icon_text.length > 0"
+[icon]="icon"
+[ngStyle]="{'font-size': icon_size}"
+></fa-icon>
+
 <span>{{ text }}</span>
 </button>

@@ -4,16 +4,16 @@ import { WindowServiceService } from "../../services/window-service.service";
 @Component({
   selector: 'app-paper',
   templateUrl: './paper.component.html',
-  styleUrls: ['./paper.component.css'],
+  styleUrls: ['./paper.component.css']
 })
 export class PaperComponent {
   @Input() width: number = 1280;
   @Input() height: number = 720;
+
   constructor(private windowService: WindowServiceService) {
     windowService.updateMainSize().then(res => this.updatePaperSize());
 
     windowService.isPaperSizeChange.subscribe((value) => {
-      console.log("vvvvvvv");
       this.updatePaperSize();
     });
   }

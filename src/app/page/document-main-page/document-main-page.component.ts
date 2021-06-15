@@ -22,7 +22,7 @@ export class DocumentMainPageComponent {
     });
   }
 
-  toggleChooseArea() {
+  toggleChooseArea(type: string) {
     this.chooseAreaState = this.chooseAreaState === 'out' ? 'in' : 'out';
     this.windowService.setToggleState(this.chooseAreaState);
     this.windowService.updateMainSize().then(res => this.updateMainSize());
