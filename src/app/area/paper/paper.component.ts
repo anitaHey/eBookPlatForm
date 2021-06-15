@@ -37,7 +37,7 @@ export class PaperComponent {
 
     let childComponentRef = this.paperContainer.createComponent(componentFactory);
 
-    let childComponent = childComponentRef.instance;
+    // let childComponent = childComponentRef.instance;
 
     this.componentsArr.push(childComponentRef);
   }
