@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { Observable, BehaviorSubject, fromEvent } from 'rxjs';
 import { pluck, distinctUntilChanged, map } from 'rxjs/operators';

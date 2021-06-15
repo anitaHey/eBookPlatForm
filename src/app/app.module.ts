@@ -13,6 +13,8 @@ import { DocumentInsertAreaComponent } from './area/document-insert-area/documen
 import { DocumentHeaderAreaComponent } from './area/document-header-area/document-header-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaperComponent } from './area/paper/paper.component';
+import { InsertTextComponent } from './components/insert-object/insert-text/insert-text.component';
+import { BasicObjComponent } from './components/insert-object/basic-obj/basic-obj.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { PaperComponent } from './area/paper/paper.component';
     DocumentInsertAreaComponent,
     DocumentHeaderAreaComponent,
     PaperComponent,
+    InsertTextComponent,
+    BasicObjComponent,
   ],
   imports: [
     BrowserModule,
