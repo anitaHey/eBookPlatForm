@@ -10,6 +10,7 @@ export class PaperManagementService {
   addPaperCalled$ = this.callAddPaper.asObservable();
   paperArr = new Array<ComponentRef<PaperComponent>>()
   current_page = 0;
+
   constructor() {
   }
 

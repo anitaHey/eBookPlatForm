@@ -1,1 +1,13 @@
-<p>basic-obj works!</p>
+<div
+class="object"
+cdkDrag
+appResizable
+[ngClass] = "type"
+[attr.data-page] = "page"
+[cdkDragBoundary] = "paperClass"
+[cdkDragDisabled] = "dragDisabled"
+>
+<div *ngIf="canResize" [hidden]="!startResize">
+  <span *ngFor="let dir in allHandleName" class="{{dir}}"></span>
+</div>
+</div>

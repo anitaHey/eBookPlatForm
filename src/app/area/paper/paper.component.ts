@@ -12,6 +12,8 @@ import { WindowServiceService } from "../../services/window-service.service";
 export class PaperComponent {
   @Input() width: number = 1280;
   @Input() height: number = 720;
+  page !: number;
+  currentNode !: ComponentRef<PaperComponent>;
 
   @ViewChild("paperContainer", { read: ViewContainerRef })
   paperContainer!: ViewContainerRef;
@@ -37,7 +39,8 @@ export class PaperComponent {
 
     let childComponentRef = this.paperContainer.createComponent(componentFactory);
 
-    // let childComponent = childComponentRef.instance;
+    let childComponent = childComponentRef.instance;
+    childComponent.page = this.page;
 
     this.componentsArr.push(childComponentRef);
   }

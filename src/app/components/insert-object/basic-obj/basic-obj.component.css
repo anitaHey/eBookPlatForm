@@ -1,0 +1,13 @@
+.object {
+  height: 100px;
+  width: 150px;
+  padding: 10px;
+
+  z-index: 1;
+  top:0;
+  left:0;
+
+  position: absolute;
+
+  border: 1px solid black;
+}
