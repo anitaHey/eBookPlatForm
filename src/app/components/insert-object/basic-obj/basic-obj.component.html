@@ -7,7 +7,9 @@ appResizable
 [cdkDragBoundary] = "paperClass"
 [cdkDragDisabled] = "dragDisabled"
 >
-<div *ngIf="canResize" [hidden]="!startResize">
-  <span *ngFor="let dir in allHandleName" class="{{dir}}"></span>
+<div *ngIf="canResize" [hidden]="!startResize" class="resizeGroup">
+  <div *ngFor="let dir of allHandleName" class="{{dir}}">
+    <div class="handleNode"></div>
+  </div>
 </div>
 </div>

@@ -12,9 +12,9 @@ export class BasicObjComponent implements OnInit {
   @Input() parentClass !: string;
   @Input() dragDisabled : boolean = false;
   @Input() canResize : boolean = true;
-  @Input() startResize : boolean = true;
+  @Input() startResize : boolean = false;
 
-  private allHandleName: string[];
+  allHandleName: string[];
   constructor() {
     this.allHandleName = ['resize-handle-s', 'resize-handle-e', 'resize-handle-se', 'resize-handle-sw', 'resize-handle-w', 'resize-handle-nw', 'resize-handle-n', 'resize-handle-ne'];
    }

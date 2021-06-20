@@ -30,13 +30,13 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
   private minHeight!: number;
   private maxHeight!: number;
 
-  private allHandleNode: {[className:string] : HTMLSpanElement};
+  private allHandleNode: Array<HTMLSpanElement>;
   // private startResize: boolean = false;
 
   constructor(element: ElementRef, currentCom:BasicObjComponent ) {
     this.element = element.nativeElement;
     this.currentCom = currentCom;
-    this.allHandleNode  = {};
+    this.allHandleNode  = [];
   }
 
   ngAfterViewInit(): void {
@@ -46,6 +46,9 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
     this.maxWidth = parseFloat(parentComputedStyle.width);
     this.minHeight = parseFloat(thisComputedStyle.minHeight);
     this.maxHeight = parseFloat(parentComputedStyle.height);
+
+    for(var num = 0; num < 8; num++)
+      this.allHandleNode.push(<HTMLSpanElement>this.element.querySelectorAll(".handleNode")[num]);
   }
 
   ngOnDestroy(): void {
