@@ -1,15 +1,17 @@
 <div
 class="object"
-cdkDrag
-appResizable
+
 [ngClass] = "type"
 [attr.data-page] = "page"
-[cdkDragBoundary] = "paperClass"
-[cdkDragDisabled] = "dragDisabled"
+
+[ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}"
 >
-<div *ngIf="canResize" [hidden]="!startResize" class="resizeGroup">
+<div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup" >
   <div *ngFor="let dir of allHandleName" class="{{dir}}">
-    <div class="handleNode"></div>
+    <div class="handleNode" data-dir="{{dir}}"></div>
   </div>
 </div>
 </div>
+<!-- cdkDrag
+[cdkDragBoundary] = "paperClass"
+[cdkDragDisabled] = "dragDisabled" -->

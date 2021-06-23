@@ -30,13 +30,14 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
   private minHeight!: number;
   private maxHeight!: number;
 
-  private allHandleNode: Array<HTMLSpanElement>;
+  private startResize: boolean = false;
+
+  private allHandleNode!: Array<HTMLSpanElement>;
   // private startResize: boolean = false;
 
   constructor(element: ElementRef, currentCom:BasicObjComponent ) {
     this.element = element.nativeElement;
     this.currentCom = currentCom;
-    this.allHandleNode  = [];
   }
 
   ngAfterViewInit(): void {
@@ -58,13 +59,10 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
   @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
   onMousedown(event: MouseEvent | TouchEvent): void {
-    if(!this.currentCom.startResize) {
-      this.currentCom.startResize = true;
+    if(!this.currentCom.showResize) {
+      this.currentCom.showResize = true;
       this.resizeBegin.emit();
-    } else {
-
     }
-
   }
 
   private destroySubscription(): void {
@@ -73,7 +71,17 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
     }
   }
 
-  initResize(event: MouseEvent | TouchEvent) {
+  handleOnMouseDown(event: MouseEvent | TouchEvent) {
+    this.startResize = true;
+  }
 
+  handleOnMouseMove(event: MouseEvent | TouchEvent) {
+    if(this.startResize) {
+      console.log("a");
+    }
+  }
+
+  handleOnMouseUp(event: MouseEvent | TouchEvent) {
+    this.startResize = false;
   }
 }

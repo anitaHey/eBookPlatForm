@@ -1,11 +1,5 @@
 .object {
-  height: 100px;
-  width: 150px;
-
   z-index: 1;
-  top:0;
-  left:0;
-
   position: absolute;
 
   border: 1px solid black;
@@ -34,7 +28,7 @@
   background: white;
 }
 
-.resize-handle-e {
+.resize-e {
   position: absolute;
   cursor: e-resize;
   height: 100%;
@@ -43,14 +37,14 @@
   top: 0;
 }
 
-.resize-handle-e > .handleNode:after {
+.resize-e > .handleNode:after {
   top:50%;
   left:0;
 
   transform: translateY(-50%);
 }
 
-.resize-handle-se {
+.resize-se {
   position:absolute;
   cursor: se-resize;
   height: 26px;
@@ -59,12 +53,12 @@
   bottom: -20px;
 }
 
-.resize-handle-se > .handleNode:after {
+.resize-se > .handleNode:after {
   top:2px;
   left:2px;
 }
 
-.resize-handle-s {
+.resize-s {
   position:absolute;
   cursor: s-resize;
   height: 26px;
@@ -73,14 +67,14 @@
   left: 0;
 }
 
-.resize-handle-s > .handleNode:after {
+.resize-s > .handleNode:after {
   top:0;
   left:50%;
   transform: translateX(-50%);
 }
 
 
-.resize-handle-sw {
+.resize-sw {
   position:absolute;
   cursor: sw-resize;
   width: 26px;
@@ -89,12 +83,12 @@
   left: -20px;
 }
 
-.resize-handle-sw > .handleNode:after {
+.resize-sw > .handleNode:after {
   top:2px;
   right:2px;
 }
 
-.resize-handle-w {
+.resize-w {
   position:absolute;
   cursor: w-resize;
   height: 100%;
@@ -103,13 +97,13 @@
   top: 0;
 }
 
-.resize-handle-w > .handleNode:after {
+.resize-w > .handleNode:after {
   top:50%;
   right:0;
   transform: translateY(-50%);
 }
 
-.resize-handle-nw {
+.resize-nw {
   position:absolute;
   cursor: nw-resize;
   width: 26px;
@@ -118,12 +112,12 @@
   left: -20px;
 }
 
-.resize-handle-nw > .handleNode:after {
+.resize-nw > .handleNode:after {
   bottom:2px;
   right:2px;
 }
 
-.resize-handle-n {
+.resize-n {
   position:absolute;
   cursor: n-resize;
   height: 26px;
@@ -132,13 +126,13 @@
   left: 0;
 }
 
-.resize-handle-n > .handleNode:after {
+.resize-n > .handleNode:after {
   bottom:0;
   left:50%;
   transform: translateX(-50%);
 }
 
-.resize-handle-ne {
+.resize-ne {
   position:absolute;
   cursor: ne-resize;
   width: 26px;
@@ -147,7 +141,7 @@
   right: -20px;
 }
 
-.resize-handle-ne > .handleNode:after {
+.resize-ne > .handleNode:after {
   bottom:2px;
   left:2px;
 }
