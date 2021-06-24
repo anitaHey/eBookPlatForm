@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ComponentRef, Renderer2, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { min } from 'rxjs/operators';
 import { Subscription, fromEvent } from 'rxjs';
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
 
 @Component({
   selector: 'app-basic-obj',
@@ -31,6 +33,8 @@ export class BasicObjComponent implements OnInit {
   private maxHeight!: number;
   private screenX!: number;
   private screenY!: number;
+  private translateX !: number;
+  private translateY !: number;
 
   private mouseUpListener!: () => void;
   private mouseMoveListener!: () => void;
@@ -50,18 +54,21 @@ export class BasicObjComponent implements OnInit {
     this.paperClass = ".paper[data-page='" + this.page + "']";
   }
 
-  // setElementSize(event: MouseEvent | TouchEvent) {
-  //   const thisComputedStyle = window.getComputedStyle(this.element.nativeElement);
-  //   const parentComputedStyle = window.getComputedStyle(<Element>document.querySelector(this.paperClass));
-  //   this.minWidth = parseFloat(thisComputedStyle.minWidth);
-  //   this.maxWidth = parseFloat(parentComputedStyle.width);
-  //   this.minHeight = parseFloat(thisComputedStyle.minHeight);
-  //   this.maxHeight = parseFloat(parentComputedStyle.height);
-  // }
-
   setInitData(evt: MouseEvent) {
     this.screenX = evt.clientX;
     this.screenY = evt.clientY;
+
+    const thisComputedStyle = window.getComputedStyle(this.element.nativeElement);
+    const parentComputedStyle = window.getComputedStyle(<Element>document.querySelector(this.paperClass));
+    this.minWidth = parseFloat(thisComputedStyle.minWidth);
+    this.maxWidth = parseFloat(parentComputedStyle.width);
+    this.minHeight = parseFloat(thisComputedStyle.minHeight);
+    this.maxHeight = parseFloat(parentComputedStyle.height);
+  }
+
+  updateDragPosition(evt: CdkDragEnd) {
+    this.translateX = evt.source.getFreeDragPosition().x;
+    this.translateY = evt.source.getFreeDragPosition().y;
   }
 
   @HostListener('mouseover', ['$event'])
@@ -154,23 +161,39 @@ export class BasicObjComponent implements OnInit {
     let currentHeightValue = this.curHeight + diffHeightValue;
 
     if (currentHeightValue <= 1) {
-      diffTopValue += currentHeightValue;
+      diffTopValue = 0;
     }
 
     if (currentWidthValue <= 1) {
-      diffLeftValue += currentWidthValue;
-    }
-
-    if (currentWidthValue <= 0) {
-      currentWidthValue = 0;
-    }
-
-    if (currentHeightValue <= 0) {
-      currentHeightValue = 0;
+      diffLeftValue = 0;
     }
 
     let currentTopValue = this.curY + diffTopValue;
     let currentLeftValue = this.curX + diffLeftValue;
+
+    if(currentTopValue + this.translateY < 0) {
+      currentTopValue = -this.translateY;
+    }
+
+    if(currentLeftValue + this.translateX < 0) {
+      currentLeftValue = -this.translateX;
+    }
+
+    if (currentWidthValue <= 0) {
+      currentWidthValue = 0;
+    } else if(currentWidthValue > this.maxWidth) {
+      currentWidthValue = this.maxWidth;
+    } else if(currentWidthValue + currentLeftValue + this.translateX > this.maxWidth) {
+      currentWidthValue = this.maxWidth - this.translateX - currentLeftValue;
+    }
+
+    if (currentHeightValue <= 0) {
+      currentHeightValue = 0;
+    } else if(currentHeightValue > this.maxHeight) {
+      currentHeightValue = this.maxHeight;
+    } else if(currentHeightValue + currentTopValue + this.translateY > this.maxHeight) {
+      currentHeightValue = this.maxHeight - this.translateY - currentTopValue;
+    }
 
     this.curY = currentTopValue;
     this.curX = currentLeftValue;

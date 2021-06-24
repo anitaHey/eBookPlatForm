@@ -2,10 +2,10 @@
 class="object"
 cdkDrag
 [cdkDragBoundary] = "paperClass"
-
+[cdkDragDisabled] = "dragDisabled"
+(cdkDragEnded)="updateDragPosition($event)"
 [ngClass] = "type"
 [attr.data-page] = "page"
-[cdkDragDisabled] = "dragDisabled"
 [ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}"
 >
 <div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup" >
