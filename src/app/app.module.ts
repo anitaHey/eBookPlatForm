@@ -15,7 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaperComponent } from './area/paper/paper.component';
 import { InsertTextComponent } from './components/insert-object/insert-text/insert-text.component';
 import { BasicObjComponent } from './components/insert-object/basic-obj/basic-obj.component';
-import { ResizableDirective } from './directive/resizable.directive';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -30,7 +29,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     PaperComponent,
     InsertTextComponent,
     BasicObjComponent,
-    ResizableDirective,
   ],
   imports: [
     BrowserModule,

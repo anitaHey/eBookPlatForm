@@ -1,9 +1,11 @@
 <div
 class="object"
+cdkDrag
+[cdkDragBoundary] = "paperClass"
 
 [ngClass] = "type"
 [attr.data-page] = "page"
-
+[cdkDragDisabled] = "dragDisabled"
 [ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}"
 >
 <div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup" >
