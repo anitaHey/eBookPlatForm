@@ -1,8 +1,6 @@
-import { Component, Input, OnInit, ComponentRef, Renderer2, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
-import { min } from 'rxjs/operators';
-import { Subscription, fromEvent } from 'rxjs';
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { Component, Input, OnInit, Renderer2, ElementRef, HostListener } from '@angular/core';
 import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
+import { PaperManagementService } from 'src/app/services/paper-management.service';
 
 @Component({
   selector: 'app-basic-obj',
@@ -24,8 +22,6 @@ export class BasicObjComponent implements OnInit {
   @Input() curY: number = 0;
 
   allHandleName: string[];
-  element: ElementRef;
-  renderer: Renderer2;
 
   private minWidth!: number;
   private maxWidth!: number;
@@ -39,13 +35,11 @@ export class BasicObjComponent implements OnInit {
   private mouseUpListener!: () => void;
   private mouseMoveListener!: () => void;
 
-
-  constructor(elementRef: ElementRef, renderer: Renderer2) {
+  constructor(private element: ElementRef, private renderer: Renderer2, private paperManagementService: PaperManagementService) {
     this.allHandleName = ['resize-s', 'resize-e', 'resize-se', 'resize-sw', 'resize-w', 'resize-nw', 'resize-n', 'resize-ne'];
-    this.element = elementRef;
-    this.renderer = renderer;
 
-    this.renderer.listen(elementRef.nativeElement, 'click', (event) => {
+    this.renderer.listen(element.nativeElement, 'click', (event) => {
+      this.paperManagementService.setCurrentFocusObj(this);
       this.showResize = true;
     });
   }
@@ -71,6 +65,10 @@ export class BasicObjComponent implements OnInit {
     this.translateY = evt.source.getFreeDragPosition().y;
   }
 
+  removeFocus() {
+    this.showResize = false;
+  }
+
   @HostListener('mouseover', ['$event'])
   public onMouseOver(evt: MouseEvent): void {
     let node = (evt.target as Element);
@@ -91,6 +89,8 @@ export class BasicObjComponent implements OnInit {
       this.setInitData(evt);
       this.mouseUpListener = this.renderer.listen('document', 'mouseup', event => this.handleOnMouseUp(event, (node.getAttribute("dir") == null ? "" : node.getAttribute("dir") as string)));
       this.mouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.handleOnMouseMove(event, (node.getAttribute("dir") == null ? "" : node.getAttribute("dir") as string)));
+    } else if (node.classList.contains("object") && !node.classList.contains("object_focus")){
+      this.renderer.addClass(node, "object_focus");
     }
   }
 

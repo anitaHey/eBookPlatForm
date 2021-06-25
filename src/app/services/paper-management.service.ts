@@ -1,6 +1,7 @@
 import { Subject } from 'rxjs';
 import { PaperComponent } from './../area/paper/paper.component';
 import { Injectable, ComponentRef } from '@angular/core';
+import { BasicObjComponent } from '../components/insert-object/basic-obj/basic-obj.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class PaperManagementService {
   addPaperCalled$ = this.callAddPaper.asObservable();
   paperArr = new Array<ComponentRef<PaperComponent>>()
   current_page = 0;
+  currentFocusObj: object | null = null;
 
   constructor() {
   }
@@ -30,5 +32,17 @@ export class PaperManagementService {
 
   addNewPaper(child: ComponentRef<PaperComponent>) {
     this.paperArr.push(child);
+  }
+
+  setCurrentFocusObj(input: object | null) {
+    if(this.currentFocusObj !== null) {
+      (this.currentFocusObj as BasicObjComponent).removeFocus();
+    }
+
+    this.currentFocusObj = input;
+  }
+
+  getCurrentFocusObj() {
+    return this.currentFocusObj;
   }
 }
