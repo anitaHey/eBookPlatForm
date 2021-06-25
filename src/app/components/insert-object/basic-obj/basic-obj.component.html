@@ -1,12 +1,22 @@
-<div class="object" cdkDrag [cdkDragBoundary]="paperClass" [cdkDragDisabled]="dragDisabled"
-  (cdkDragEnded)="updateDragPosition($event)" [ngClass]="type" [attr.data-page]="page"
-  [ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}">
+<div
+  class="object"
+  cdkDrag
+  [cdkDragBoundary]="paperClass"
+  [cdkDragDisabled]="dragDisabled"
+  (cdkDragEnded)="updateDragPosition($event)"
+
+  appResizable
+  [translateX] = "translateX"
+  [translateY] = "translateY"
+  [paperClass] = "paperClass"
+  (resizing) = "updateResize($event)"
+
+  [ngClass]="type" [attr.data-page]="page"
+  [ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}"
+  >
   <div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup">
     <div *ngFor="let dir of allHandleName" class="{{dir}}">
       <div class="handleNode" data-dir="{{dir}}"></div>
     </div>
   </div>
 </div>
-<!-- cdkDrag
-[cdkDragBoundary] = "paperClass"
-[cdkDragDisabled] = "dragDisabled" -->
