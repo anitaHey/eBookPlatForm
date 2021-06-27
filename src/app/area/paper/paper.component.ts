@@ -1,5 +1,6 @@
 import { PaperManagementService } from './../../services/paper-management.service';
 import { BasicObjComponent } from './../../components/insert-object/basic-obj/basic-obj.component';
+import { InsertTextComponent } from 'src/app/components/insert-object/insert-text/insert-text.component';
 import {
   Component, Input, HostListener, ViewChild, ComponentRef, ComponentFactoryResolver, ViewContainerRef, ElementRef, Renderer2
 } from '@angular/core';
@@ -36,12 +37,17 @@ export class PaperComponent {
   }
 
   createComponent(type: string) {
-    let componentFactory = this.CFR.resolveComponentFactory(BasicObjComponent);
+    let componentFactory;
 
+    if(type == "text")
+      componentFactory = this.CFR.resolveComponentFactory(InsertTextComponent);
+    else
+      componentFactory = this.CFR.resolveComponentFactory(BasicObjComponent);
     let childComponentRef = this.paperContainer.createComponent(componentFactory);
 
     let childComponent = childComponentRef.instance;
     childComponent.page = this.page;
+    childComponent.type = type;
 
     this.componentsArr.push(childComponentRef);
   }

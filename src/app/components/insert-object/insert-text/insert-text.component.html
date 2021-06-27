@@ -1,1 +1,18 @@
-<p>insert-text works!</p>
+<app-basic-obj
+[templateRef]='childTemplate'
+[showResize] = showResize
+[canResize] = canResize
+[curWidth] = curWidth
+[curHeight] = curHeight
+[curX] = curX
+[curY] = curY
+[paperClass] = paperClass
+[dragDisabled] = dragDisabled
+[type] = type
+[page] = page
+>
+</app-basic-obj>
+
+<ng-template #childTemplate>
+  <div class="text_node"></div>
+</ng-template>

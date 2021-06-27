@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, ElementRef, HostListener, TemplateRef, ViewContainerRef } from '@angular/core';
 import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
 import { PaperManagementService } from 'src/app/services/paper-management.service';
 import { ResizableEvent } from 'src/app/event/resizable-event';
@@ -10,6 +10,7 @@ import { ResizableEvent } from 'src/app/event/resizable-event';
 })
 export class BasicObjComponent implements OnInit {
   @Input() type!: string;
+  @Input() text!: string;
   @Input() page !: number;
   @Input() paperClass !: string;
   @Input() parentClass !: string;
@@ -21,6 +22,7 @@ export class BasicObjComponent implements OnInit {
   @Input() curHeight: number = 100;
   @Input() curX: number = 0;
   @Input() curY: number = 0;
+  @Input() templateRef!: TemplateRef<any>;
 
   allHandleName: string[];
   translateX : number = 0;
@@ -32,11 +34,13 @@ export class BasicObjComponent implements OnInit {
     this.renderer.listen(element.nativeElement, 'click', (event) => {
       this.paperManagementService.setCurrentFocusObj(this);
       this.showResize = true;
+
     });
   }
 
   ngOnInit(): void {
     this.paperClass = ".paper[data-page='" + this.page + "']";
+    console.log("from parent");
   }
 
   updateDragPosition(evt: CdkDragEnd) {
