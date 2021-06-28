@@ -17,6 +17,8 @@ import { PaperComponent } from './area/paper/paper.component';
 import { InsertTextComponent } from './components/insert-object/insert-text/insert-text.component';
 import { BasicObjComponent } from './components/insert-object/basic-obj/basic-obj.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FontAwesomeModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    ContenteditableValueAccessorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,14 +10,20 @@
   [translateY] = "translateY"
   [paperClass] = "paperClass"
   (resizing) = "updateResize($event)"
+  (mouseOver) = "onMouseOver($event)"
 
   [ngClass]="type" [attr.data-page]="page"
   [ngStyle]="{'width': curWidth + 'px', 'height': curHeight+ 'px', 'top': curY+ 'px', 'left': curX+ 'px'}"
   >
+  <div class="all">
   <div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup">
-    <div *ngFor="let dir of allHandleName" class="{{dir}}">
-      <div class="handleNode" data-dir="{{dir}}"></div>
-    </div>
+    <div *ngFor="let dir of allHandleName" class="moveNode {{dir}}"></div>
+    <div *ngFor="let dir of allHandleName" class="handleNode {{dir}}" data-dir="{{dir}}"></div>
+
+
   </div>
+
   <ng-container *ngTemplateOutlet='templateRef' class="child"></ng-container>
+</div>
+
   </div>

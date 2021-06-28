@@ -21,141 +21,148 @@
   position: absolute;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.all {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /* resize */
-
-.handleNode {
-  width: 100%;
-  height: 100%;
-
+.moveNode {
+  position: absolute;
+  cursor: move;
   pointer-events: auto;
 }
 
-.handleNode:after {
-  content: "";
+
+.handleNode {
+  position: absolute;
+  pointer-events: auto;
+
   height:12px;
   width: 12px;
-  position: absolute;
   border-radius: 50%;
   box-shadow: 0 0 5px 1px rgb(57 76 96 / 15%), 0 0 0 1px rgb(53 71 90 / 20%);
   background: white;
 }
 
-.resize-e {
-  position: absolute;
-  cursor: e-resize;
+.resize-e.moveNode {
   height: 100%;
   width: 26px;
   right: -20px;
   top: 0;
 }
 
-.resize-e > .handleNode:after {
+.resize-e.handleNode {
+  right: -6px;
   top:50%;
-  left:0;
 
   transform: translateY(-50%);
+  cursor: e-resize;
 }
 
-.resize-se {
-  position:absolute;
-  cursor: se-resize;
+.resize-se.moveNode {
   height: 26px;
   width: 26px;
   right: -20px;
   bottom: -20px;
 }
 
-.resize-se > .handleNode:after {
-  top:2px;
-  left:2px;
+.resize-se.handleNode {
+  right: -6px;
+  bottom: -6px;
+
+  cursor: se-resize;
 }
 
-.resize-s {
-  position:absolute;
-  cursor: s-resize;
+.resize-s.moveNode {
   height: 26px;
   width: 100%;
   bottom: -20px;
   left: 0;
 }
 
-.resize-s > .handleNode:after {
-  top:0;
-  left:50%;
+.resize-s.handleNode {
+  bottom: -6px;
+  left: 50%;
+
   transform: translateX(-50%);
+  cursor: s-resize;
 }
 
-
-.resize-sw {
-  position:absolute;
-  cursor: sw-resize;
+.resize-sw.moveNode {
   width: 26px;
   height: 26px;
   bottom: -20px;
   left: -20px;
 }
 
-.resize-sw > .handleNode:after {
-  top:2px;
-  right:2px;
+.resize-sw.handleNode {
+  bottom: -6px;
+  left: -6px;
+
+  cursor: sw-resize;
 }
 
-.resize-w {
-  position:absolute;
-  cursor: w-resize;
+.resize-w.moveNode {
   height: 100%;
   width: 26px;
   left: -20px;
   top: 0;
 }
 
-.resize-w > .handleNode:after {
-  top:50%;
-  right:0;
+.resize-w.handleNode {
+  left: -6px;
+  top: 50%;
+
   transform: translateY(-50%);
+  cursor: w-resize;
 }
 
-.resize-nw {
-  position:absolute;
-  cursor: nw-resize;
+.resize-nw.moveNode {
   width: 26px;
   height:26px;
   top: -20px;
   left: -20px;
 }
 
-.resize-nw > .handleNode:after {
-  bottom:2px;
-  right:2px;
+.resize-nw.handleNode {
+  top: -6px;
+  left: -6px;
+
+  cursor: nw-resize;
 }
 
-.resize-n {
-  position:absolute;
-  cursor: n-resize;
+.resize-n.moveNode {
   height: 26px;
-  width: 95%;
+  width: 100%;
   top: -20px;
   left: 0;
 }
 
-.resize-n > .handleNode:after {
-  bottom:0;
-  left:50%;
+.resize-n.handleNode {
+  top: -6px;
+  left: 50%;
+
   transform: translateX(-50%);
+  cursor: n-resize;
 }
 
-.resize-ne {
-  position:absolute;
-  cursor: ne-resize;
+.resize-ne.moveNode {
   width: 26px;
   height: 26px;
   top: -20px;
   right: -20px;
 }
 
-.resize-ne > .handleNode:after {
-  bottom:2px;
-  left:2px;
+.resize-ne.handleNode {
+  top: -6px;
+  right: -6px;
+
+  cursor: ne-resize;
 }

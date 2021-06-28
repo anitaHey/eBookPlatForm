@@ -10,9 +10,12 @@
 [dragDisabled] = dragDisabled
 [type] = type
 [page] = page
+(mouseOver) = "onMouseOver($event)"
 >
 </app-basic-obj>
-
 <ng-template #childTemplate>
-  <div class="text_node"></div>
+  <div
+   [(ngModel)]="model" contenteditable
+  class="text_node"
+  ></div>
 </ng-template>

@@ -50,8 +50,8 @@ export class ResizableDirective {
       this.setInitData(evt);
       this.mouseUpListener = this.renderer.listen('document', 'mouseup', event => this.handleOnMouseUp(event, (node.getAttribute("dir") == null ? "" : node.getAttribute("dir") as string)));
       this.mouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.handleOnMouseMove(event, (node.getAttribute("dir") == null ? "" : node.getAttribute("dir") as string)));
-    } else if (node.classList.contains("object") && !node.classList.contains("object_focus")){
-      this.renderer.addClass(node, "object_focus");
+    } else if (!node.classList.contains("object_focus")){
+      this.renderer.addClass(this.element.nativeElement, "object_focus");
     }
   }
 
