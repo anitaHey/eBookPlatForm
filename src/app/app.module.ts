@@ -19,6 +19,7 @@ import { BasicObjComponent } from './components/insert-object/basic-obj/basic-ob
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
 import { FormsModule } from '@angular/forms';
+import { InsertWordComponent } from './components/insert-object/insert-word/insert-word.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     InsertTextComponent,
     BasicObjComponent,
     ResizableDirective,
+    InsertWordComponent,
   ],
   imports: [
     BrowserModule,
