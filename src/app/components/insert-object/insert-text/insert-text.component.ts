@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Renderer2, AfterViewInit, ComponentFacto
 import { BasicObjComponent } from '../basic-obj/basic-obj.component';
 import { PaperManagementService } from 'src/app/services/paper-management.service';
 import { InsertWordComponent } from '../insert-word/insert-word.component';
+import { FontManagementService } from 'src/app/services/font-management.service';
 
 @Component({
   selector: 'app-insert-text',
@@ -9,11 +10,12 @@ import { InsertWordComponent } from '../insert-word/insert-word.component';
   styleUrls: ['./insert-text.component.css']
 })
 export class InsertTextComponent extends BasicObjComponent implements OnInit, AfterViewInit {
-  model = '123';
+  model = '';
   input_state: number = 1;
 
 
-  constructor(private injector: Injector, private applicationRef: ApplicationRef, private CFR: ComponentFactoryResolver, private node_element: ElementRef, private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService) {
+  constructor(private injector: Injector, private applicationRef: ApplicationRef, private CFR: ComponentFactoryResolver, private node_element: ElementRef
+    , private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService, private fontService: FontManagementService) {
     super(node_element, node_renderer, node_paperManagementService);
 
     this.onMouseOver = function (evt: MouseEvent): void {
@@ -54,15 +56,28 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
       if (this.input_state == 1 && event.keyCode != 37 && event.keyCode != 38 && event.keyCode != 39 && event.keyCode != 40 && event.keyCode != 229) {
         // console.log((event.target as Element).removeChild((event.target as Element).childNodes[0]));
         let node = (event.target as Element);
-        var node_child = node.childNodes;
-        this.createSpan();
+        console.log(event.target);
+        var node_child = Array.from(node.childNodes);
+        // node.innerHTML = "";
+        for(let tem of node_child) {
+          if(tem.nodeName.includes("text") && tem.nodeValue!= null) {
+            for (var n of tem.nodeValue) this.createSpan(n, tem);
+          } else if(tem.nodeName.includes("DIV")) {
+            let div_child = Array.from(tem.childNodes);
+            for(let div_tem of div_child) {
+              if(div_tem.nodeName.includes("text") && div_tem.nodeValue!= null)
+                for (var n of div_tem.nodeValue) this.createSpan(n, div_tem);
+            }
+          }
+        }
       }
     });
   }
 
-  createSpan() {
+  createSpan(text: string, childNode: ChildNode) {
     const caretPosition = window.getSelection()!.getRangeAt(0);
     const range = document.createRange();
+
     range.setStart(
       caretPosition.commonAncestorContainer,
       caretPosition.startOffset
@@ -76,9 +91,15 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
     const cmp = factory.create(this.injector, [], child);
 
     this.applicationRef.attachView(cmp.hostView);
-    cmp.instance.text = "1";
+    cmp.instance.text = text;
+    cmp.instance.fontColor = this.fontService.getCurrentColor();
+    cmp.instance.fontFamily = this.fontService.getCurrentFamily();
+    cmp.instance.fontSize = this.fontService.getCurrentSize();
 
-    range.insertNode(child);
+    childNode.parentNode?.replaceChild(child, childNode);
+
+    console.log(range.endOffset);
+    console.log(caretPosition.endOffset);
     caretPosition.setStart(range.endContainer, range.endOffset);
     caretPosition.setEnd(caretPosition.endContainer, caretPosition.endOffset);
   }
