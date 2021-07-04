@@ -169,16 +169,11 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
   getNewInsertNode(node: Element, count: number, num: number): any {
     let list = node.childNodes;
     let node_child = Array.from(list);
-console.log(num);
     for (let tem of node_child) {
-      // console.log(tem.nodeName);
       if (tem.nodeName != "DIV" && count == num) return tem;
       else if (tem.nodeName == "SPAN") count++;
       else if (tem.nodeName == "DIV") {
-        // console.log(tem.childNodes.length);
-        // console.log((num-count));
-        if (tem.childNodes.length >= (num - count)) {
-
+        if (tem.childNodes.length > (num - count)) {
           return this.getNewInsertNode((tem as Element), count, num);
         }
         else count += tem.childNodes.length;
