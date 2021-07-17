@@ -3,8 +3,12 @@
   <app-document-insert-area
   (chooseOpen)="toggleChooseArea($event)"
   ></app-document-insert-area>
-  <app-document-choose-area [@slideInOut]="{value: chooseAreaState, params:{max_width: '312px'}} " style="overflow: hidden;"></app-document-choose-area>
-  <app-document-main-area
-  [@mainSlideInOut]="{value: chooseAreaState, params:{max_width:  documentMainMaxW+'px' , min_width: documentMainMinW+'px'}} "
-  ></app-document-main-area>
+  <div class="choose_area" [@slideInOut]="{value: chooseAreaState, params:{max_width: '312px'}} " style="overflow-x: hidden;">
+    <app-document-choose-area class="part" [ngStyle]="{'display': chooseDisplay}"></app-document-choose-area>
+    <app-document-main-style-area class="part" [ngStyle]="{'display': styleDisplay}"></app-document-main-style-area>
+  </div>
+  <div class="document" [@mainSlideInOut]="{value: chooseAreaState, params:{max_width:  documentMainMaxW+'px' , min_width: documentMainMinW+'px'}} ">
+    <app-document-style-area (styleOpen)="toggleStyleArea($event)" ></app-document-style-area>
+    <app-document-main-area></app-document-main-area>
+  </div>
 </div>

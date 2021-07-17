@@ -1,7 +1,6 @@
-import { Component, OnInit, ElementRef, Renderer2, AfterViewInit, ComponentFactoryResolver, Injector, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { BasicObjComponent } from '../basic-obj/basic-obj.component';
 import { PaperManagementService } from 'src/app/services/paper-management.service';
-import { InsertWordComponent } from '../insert-word/insert-word.component';
 import { FontManagementService } from 'src/app/services/font-management.service';
 
 @Component({
@@ -18,8 +17,7 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
   rangeNum: number = 0;
   isEnter: boolean = false;
 
-  constructor(private injector: Injector, private applicationRef: ApplicationRef, private CFR: ComponentFactoryResolver, private node_element: ElementRef
-    , private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService, private fontService: FontManagementService) {
+  constructor(private node_element: ElementRef, private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService, private fontService: FontManagementService) {
     super(node_element, node_renderer, node_paperManagementService);
 
     this.onMouseOver = function (evt: MouseEvent): void {
@@ -65,8 +63,6 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'keypress', (event) => {
       if (this.input_state == 1 && event.keyCode == 13) {
         this.isEnter = true;
-        // event.preventDefault();
-        // event.stopPropagation();
       }
     });
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class FontManagementService {
   fontColor: string = "black";
   fontSize: number = 20;
-  fontFamily: string = "sans-serif";
+  fontFamily: string = "Verdana";
 
   constructor() { }
 
@@ -20,5 +20,17 @@ export class FontManagementService {
 
   getCurrentFamily(): string {
     return this.fontFamily;
+  }
+
+  setCurrentFamily(input: string): void {
+    this.fontFamily = input;
+  }
+
+  setCurrentSize(input: number): void {
+    this.fontSize = input;
+  }
+
+  setCurrentColor(input: string): void {
+    this.fontColor = input;
   }
 }

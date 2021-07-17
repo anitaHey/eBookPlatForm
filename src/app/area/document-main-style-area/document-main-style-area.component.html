@@ -1,0 +1,29 @@
+<div class="chooseArea">
+  <div class="family">
+    <app-button
+    n_bg_color= {{font_family_list[0]}}
+    n_color="black"
+    h_bg_color="#f0f0f0"
+    h_color="black"
+    text= {{currentFamily}}
+    setting="w-100"
+    font_family= {{currentFamily}}
+    (btnClick) = "clickFamily(0)"
+    ></app-button>
+    <div class="hr"></div>
+    <app-button
+    *ngFor="let item of font_familt_list; index as i"
+    n_bg_color= {{font_family_list[i+1]}}
+    n_color="black"
+    h_bg_color="#f0f0f0"
+    h_color="black"
+    text= {{item}}
+    setting="w-100"
+    font_family= {{item}}
+    (btnClick) = "clickFamily(i+1)"
+    ></app-button>
+  </div>
+  <div class="picture">
+
+  </div>
+</div>

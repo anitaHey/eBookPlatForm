@@ -375,3 +375,19 @@ textarea {
 html, body {
   height: 100%;
 }
+
+*::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2);
+  background-color: #c7c1c1bc;
+}

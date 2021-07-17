@@ -20,6 +20,9 @@ export class ButtonComponent implements OnInit {
   @Input() pic_size !: string[];
   @Input() setting !: string;
   @Input() layout_text !: string;
+  @Input() border_style : string = "0";
+  @Input() padding : string = "20px 20px";
+  @Input() font_family !: string;
   @Output() btnClick = new EventEmitter();
   color!: string;
   bg_color!: string;
@@ -53,4 +56,8 @@ export class ButtonComponent implements OnInit {
     else if(input == "pic_image")
       this.icon = faImage;
   }
+
+  // changeBGcolor() {
+
+  // }
 }

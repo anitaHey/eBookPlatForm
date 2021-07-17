@@ -13,7 +13,11 @@ import { PaperManagementService } from './../../services/paper-management.servic
 export class DocumentMainPageComponent {
   documentMainMinW : number = 300;
   documentMainMaxW : number = 300;
+  chooseDisplay = "block";
+  styleDisplay = "none";
 
+  curStyleState = 'close';
+  curChooseState = 'in';
   chooseAreaState = 'in';
   constructor(private windowService: WindowServiceService, private paperService: PaperManagementService) {
     this.windowService.updateMainSize().then(res => this.updateMainSize());
@@ -29,8 +33,51 @@ export class DocumentMainPageComponent {
     }
   }
 
+  toggleStyleArea(type: string) {
+    if(this.curStyleState == "close") {
+      if(this.chooseAreaState == 'out') {
+        this.chooseAreaState = 'in';
+        this.chooseAreaAnimation();
+      }
+
+      this.chooseDisplay = "none";
+      this.styleDisplay = "block";
+      this.curStyleState = "out";
+    } else {
+      if(this.curChooseState == 'out') {
+        this.chooseAreaState = 'out';
+        this.chooseAreaAnimation();
+      } else {
+        this.chooseDisplay = "block";
+        this.styleDisplay = "none";
+      }
+
+      this.curStyleState = "close";
+    }
+  }
+
   toggleChooseArea(type: string) {
-    this.chooseAreaState = this.chooseAreaState === 'out' ? 'in' : 'out';
+    if(this.chooseAreaState == 'in') {
+      if(this.curStyleState == "out") {
+        this.curStyleState = "close";
+        this.styleDisplay = "none";
+        this.chooseDisplay = "block";
+      } else {
+        this.chooseAreaState = 'out';
+        this.curChooseState = 'out';
+
+        this.chooseAreaAnimation();
+      }
+    } else {
+      this.styleDisplay = "none";
+      this.chooseDisplay = "block";
+      this.curChooseState = 'in';
+      this.chooseAreaState = 'in';
+      this.chooseAreaAnimation();
+    }
+  }
+
+  chooseAreaAnimation() {
     this.windowService.setToggleState(this.chooseAreaState);
     this.windowService.updateMainSize().then(res => this.updateMainSize());
   }

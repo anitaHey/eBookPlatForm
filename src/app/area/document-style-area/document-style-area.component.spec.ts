@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InsertWordComponent } from './insert-word.component';
+import { DocumentStyleAreaComponent } from './document-style-area.component';
 
-describe('InsertWordComponent', () => {
-  let component: InsertWordComponent;
-  let fixture: ComponentFixture<InsertWordComponent>;
+describe('DocumentStyleAreaComponent', () => {
+  let component: DocumentStyleAreaComponent;
+  let fixture: ComponentFixture<DocumentStyleAreaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InsertWordComponent ]
+      declarations: [ DocumentStyleAreaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InsertWordComponent);
+    fixture = TestBed.createComponent(DocumentStyleAreaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
