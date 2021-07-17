@@ -7,15 +7,16 @@ import { FontManagementService } from 'src/app/services/font-management.service'
   styleUrls: ['./document-main-style-area.component.css']
 })
 export class DocumentMainStyleAreaComponent implements OnInit {
-  font_familt_list!: string[];
-  font_family_list!: string[];
+  font_family_list: string[];
+  font_family_state: string[];
   currentFamily!: string;
   currentFamilyNum: number = 0;
-  constructor(private fontService: FontManagementService) {
-    this.font_familt_list = ['Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
-     'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
 
-    this.font_family_list = ["#f0f0f0", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"];
+  constructor(private fontService: FontManagementService) {
+    this.font_family_list = ['Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
+      'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
+
+    this.font_family_state = ["#f0f0f0", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"];
     this.currentFamily = fontService.getCurrentFamily();
   }
 
@@ -23,10 +24,13 @@ export class DocumentMainStyleAreaComponent implements OnInit {
   }
 
   clickFamily(num: number): void {
-    this.font_family_list[this.currentFamilyNum] = "transparent";
-    this.font_family_list[num] = "#f0f0f0";
+    this.font_family_state[this.currentFamilyNum] = "#fff";
+    this.font_family_state[num] = "#f0f0f0";
 
     this.currentFamilyNum = num;
-  }
 
+    setTimeout(()=>{
+      this.fontService.setTemFamily();
+    }, 10);
+  }
 }

@@ -1,0 +1,24 @@
+<button
+(mouseover)="changeBtn(true)"
+(mouseleave)="changeBtn(false)"
+[ngStyle]="{'background-color': bg_color, 'color': color, 'border': border_style, 'padding': padding, 'font-family': font_family}"
+[ngClass]="setting"
+fxLayoutAlign="center center"
+fxLayout="{{layout_text}}"
+class="btn"
+(click) = "onClick()"
+>
+<img
+*ngIf="pic_src!== undefined && pic_src.length > 0"
+[src]= "pic_src"
+[ngStyle]="{'width': pic_size[0], 'height': pic_size[1]}"
+ alt="">
+
+<fa-icon
+*ngIf="icon_text!== undefined && icon_text.length > 0"
+[icon]="icon"
+[ngStyle]="{'font-size': icon_size}"
+></fa-icon>
+
+<span>{{ text }}</span>
+</button>

@@ -21,6 +21,8 @@ import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contentedit
 import { FormsModule } from '@angular/forms';
 import { DocumentStyleAreaComponent } from './area/document-style-area/document-style-area.component';
 import { DocumentMainStyleAreaComponent } from './area/document-main-style-area/document-main-style-area.component';
+import { BasicButtonComponent } from './components/button/basic-button/basic-button.component';
+import { FontFamilyButtonComponent } from './components/button/font-family-button/font-family-button.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DocumentMainStyleAreaComponent } from './area/document-main-style-area/
     ResizableDirective,
     DocumentStyleAreaComponent,
     DocumentMainStyleAreaComponent,
+    BasicButtonComponent,
+    FontFamilyButtonComponent,
   ],
   imports: [
     BrowserModule,

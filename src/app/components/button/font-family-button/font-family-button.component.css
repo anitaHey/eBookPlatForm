@@ -1,0 +1,22 @@
+button {
+  /* border: 0;
+  padding: 20px 20px; */
+}
+
+button:hover {
+  background-color: #fff;
+}
+
+fa-icon, img {
+  vertical-align: middle;
+}
+
+.left > fa-icon,
+.left > img {
+  padding: 0px 10px 0px 0px;
+}
+
+.up > fa-icon,
+.up > img {
+  padding: 0px 0px 10px 0px;
+}
