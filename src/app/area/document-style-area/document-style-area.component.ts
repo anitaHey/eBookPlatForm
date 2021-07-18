@@ -20,7 +20,10 @@ export class DocumentStyleAreaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(type: string) {
+  show(e: MouseEvent, type: string) {
+    e.preventDefault();
+    e.stopPropagation();
+
     this.styleOpen.emit();
   }
 }

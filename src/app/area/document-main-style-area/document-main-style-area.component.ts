@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontManagementService } from 'src/app/services/font-management.service';
+import { SelectManagementService } from 'src/app/services/select-management.service';
 
 @Component({
   selector: 'app-document-main-style-area',
@@ -12,7 +13,7 @@ export class DocumentMainStyleAreaComponent implements OnInit {
   currentFamily!: string;
   currentFamilyNum: number = 0;
 
-  constructor(private fontService: FontManagementService) {
+  constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService) {
     this.font_family_list = ['Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
       'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
 
@@ -29,8 +30,33 @@ export class DocumentMainStyleAreaComponent implements OnInit {
 
     this.currentFamilyNum = num;
 
+    this.changeTextFont(num);
     setTimeout(()=>{
       this.fontService.setTemFamily();
     }, 10);
+  }
+
+  changeTextFont(num: number) {
+    if (this.selectManagement.getSelectedContent!= null && this.selectManagement.getSelectedRange != null) {
+        let font = this.font_family_list[num];
+        let node_list = this.selectManagement.getSelectedContent();
+
+        let length = node_list.length;
+        var node = document.createElement('span');
+        node.classList.add("new_span");
+
+        for (let i = 0; i < length; i++) {
+          let cssText = (node_list[0] as HTMLSpanElement).style.cssText.split(";");
+          (node_list[0] as HTMLSpanElement).style.cssText = "font-family: " + font +";"+cssText[1]+";"+cssText[2] +";";
+          node.appendChild(node_list[0]);
+        }
+
+        (this.selectManagement.getSelectedRange() as unknown as Range).deleteContents();
+        (this.selectManagement.getSelectedRange() as unknown as Range).insertNode(node);
+
+        node.replaceWith(...Array.from(node.children));
+
+        // console.log(this.selectManagement.getSelectedRange());
+    }
   }
 }

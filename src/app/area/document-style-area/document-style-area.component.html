@@ -1,11 +1,11 @@
 <div class="styleArea">
   <div class="text whole_row ">
-    <div class="btn family_select" (click)= "show('family')" [ngStyle]= "{'font-family': currentFamily}">
+    <div class="btn family_select" (mousedown)= "show($event, 'family')" [ngStyle]= "{'font-family': currentFamily}">
       {{currentFamily}}
     </div>
     <div class="group">
       <button class="size_min">-</button>
-      <div class="btn font_size" (click)= "show('family')">
+      <div class="btn font_size" (mousedown)= "show($event, 'family')">
         {{currentSize}}
       </div>
       <button class="size_plus">+</button>

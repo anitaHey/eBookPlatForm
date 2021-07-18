@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Renderer2, AfterViewInit } from '@angula
 import { BasicObjComponent } from '../basic-obj/basic-obj.component';
 import { PaperManagementService } from 'src/app/services/paper-management.service';
 import { FontManagementService } from 'src/app/services/font-management.service';
+import { SelectManagementService } from 'src/app/services/select-management.service';
 
 @Component({
   selector: 'app-insert-text',
@@ -17,7 +18,8 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
   rangeNum: number = 0;
   isEnter: boolean = false;
 
-  constructor(private node_element: ElementRef, private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService, private fontService: FontManagementService) {
+  constructor(private node_element: ElementRef, private node_renderer: Renderer2, private node_paperManagementService: PaperManagementService
+    , private fontService: FontManagementService, private selectManagement: SelectManagementService) {
     super(node_element, node_renderer, node_paperManagementService);
 
     this.onMouseOver = function (evt: MouseEvent): void {
@@ -43,7 +45,15 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
     });
 
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'mouseup', (event) => {
-      // this.getCaretCharacterOffsetWithin(this.node_element.nativeElement.querySelector(".text_node"));
+      var sel = window.getSelection();
+      if(sel != null && sel.toString().length > 0) {
+        this.selectManagement.setSelectedContent(sel.getRangeAt(0).cloneContents().childNodes);
+        this.selectManagement.setSelectedRange(sel.getRangeAt(0));
+      } else {
+        this.selectManagement.setSelectedContent(null);
+        this.selectManagement.setSelectedRange(null);
+      }
+
     });
 
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'compositionstart', (event) => {
@@ -52,12 +62,6 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
 
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'compositionend', (event) => {
       this.input_state = 1;
-    });
-
-    this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'selectionchange', (event) => {
-      // console.log(window.getSelection()?.getRangeAt(0));
-      // console.log(window.getSelection());
-      // this.getCaretCharacterOffsetWithin(this.node_element.nativeElement.querySelector(".text_node"));
     });
 
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'keypress', (event) => {
