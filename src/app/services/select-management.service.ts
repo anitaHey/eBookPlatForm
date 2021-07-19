@@ -10,8 +10,6 @@ export class SelectManagementService {
 
   setSelectedContent(input: any) {
     this.selectedContent = input;
-
-    console.log(input);
   }
 
   getSelectedContent() {

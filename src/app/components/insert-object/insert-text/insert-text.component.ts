@@ -75,7 +75,6 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
         let num = this.getCaretCharacterOffsetWithin(this.node_element.nativeElement.querySelector(".text_node"));
         let node = (event.target as Element);
         let child = Array.from(node.childNodes);
-
         node.innerHTML = "";
         this.addNode(child, node);
 
@@ -97,11 +96,12 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
       } else {
         add = true;
         if (tem.nodeName.includes("text") && tem.nodeValue != null)
-          for (var n of tem.nodeValue) this.createSpan(n, new_div);
+          for (var n of tem.nodeValue) this.createSpan(n, new_div, "");
         else if (tem.nodeName == "SPAN") {
-          if ((tem as HTMLElement).innerText.length >= 1)
-            for (var n of (tem as HTMLElement).innerText) this.createSpan(n, new_div);
-          else new_div.appendChild(tem);
+          if ((tem as HTMLElement).innerText.length > 1){
+            let cssText = (tem as HTMLElement).style.cssText;
+            for (var n of (tem as HTMLElement).innerText) this.createSpan(n, new_div, cssText);
+          } else if ((tem as HTMLElement).innerText.length == 1) new_div.appendChild(tem);
         }
       }
     }
@@ -113,11 +113,13 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
 
   }
 
-  createSpan(text: string, parentNode: ChildNode) {
+  createSpan(text: string, parentNode: ChildNode, cssText: string) {
     let child = document.createElement("span");
     child.innerHTML = text;
-    child.style.cssText = "font-family: " + this.fontService.getCurrentFamily() + ";color: " + this.fontService.getCurrentColor() + ";font-size: " + this.fontService.getCurrentSize() + "px;";
-
+    if(cssText.length == 0)
+      child.style.cssText = "font-family: " + this.fontService.getCurrentFamily() + ";color: " + this.fontService.getCurrentColor() + ";font-size: " + this.fontService.getCurrentSize() + "px;";
+    else
+      child.style.cssText = cssText;
     parentNode.appendChild(child);
   }
 
@@ -161,6 +163,7 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
       this.caretPosition.selectNodeContents(parent);
       this.caretPosition.setStart(container, start);
       this.caretPosition.setEnd(container, end);
+
       window.getSelection()?.removeAllRanges();
       window.getSelection()?.addRange(this.caretPosition);
     }
