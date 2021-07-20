@@ -36,27 +36,31 @@ export class DocumentMainStyleAreaComponent implements OnInit {
     }, 10);
   }
 
+  // TODO: multiple line text change
   changeTextFont(num: number) {
     if (this.selectManagement.getSelectedContent!= null && this.selectManagement.getSelectedRange != null) {
         let font = this.font_family_list[num];
         let node_list = this.selectManagement.getSelectedContent();
-
         let length = node_list.length;
         var node = document.createElement('span');
-        node.classList.add("new_span");
 
         for (let i = 0; i < length; i++) {
-          let cssText = (node_list[0] as HTMLSpanElement).style.cssText.split(";");
-          (node_list[0] as HTMLSpanElement).style.cssText = "font-family: " + font +";"+cssText[1]+";"+cssText[2] +";";
-          node.appendChild(node_list[0]);
+          if((node_list[0] as HTMLSpanElement).nodeName == "DIV") {
+            // console.log((node_list[0] as HTMLSpanElement).childNodes);
+          } else {
+            (node_list[0] as HTMLSpanElement).style.fontFamily = font;
+            node.appendChild(node_list[0]);
+          }
         }
+        let range = (this.selectManagement.getSelectedRange() as unknown as Range);
+        range.deleteContents();
 
-        (this.selectManagement.getSelectedRange() as unknown as Range).deleteContents();
-        (this.selectManagement.getSelectedRange() as unknown as Range).insertNode(node);
+        console.log(this.selectManagement.getSelectTextIsNewLine());
+
+
+        range.insertNode(node);
 
         node.replaceWith(...Array.from(node.children));
-
-        // console.log(this.selectManagement.getSelectedRange());
     }
   }
 }

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SelectManagementService {
   selectedContent!: any;
+  selectedTextDiv!: Node[];
+  selectedTextNew!:boolean[];
   selectedRange!: Range | null;
   constructor() { }
 
@@ -12,8 +14,20 @@ export class SelectManagementService {
     this.selectedContent = input;
   }
 
+  setSelectTextDiv(input: Node[]) {
+    this.selectedTextDiv = input;
+  }
+
+  setSelectTextIsNewLine(input: boolean[]) {
+    this.selectedTextNew = input;
+  }
+
   getSelectedContent() {
     return this.selectedContent;
+  }
+
+  getSelectTextDiv() {
+    return this.selectedTextDiv;
   }
 
   setSelectedRange(input: Range | null) {
@@ -22,5 +36,9 @@ export class SelectManagementService {
 
   getSelectedRange() {
     return this.selectedRange;
+  }
+
+  getSelectTextIsNewLine() {
+    return this.selectedTextNew;
   }
 }

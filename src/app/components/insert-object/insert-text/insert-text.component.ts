@@ -49,11 +49,18 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
       if(sel != null && sel.toString().length > 0) {
         this.selectManagement.setSelectedContent(sel.getRangeAt(0).cloneContents().childNodes);
         this.selectManagement.setSelectedRange(sel.getRangeAt(0));
+        let first_div = sel.getRangeAt(0).startContainer.parentNode?.parentNode;
+        let last_div = sel.getRangeAt(0).endContainer.parentNode?.parentNode;
+        this.selectManagement.setSelectTextDiv([first_div as Node, last_div as Node]);
+        let fir_b = first_div?.firstChild?.isSameNode(sel.getRangeAt(0).startContainer.parentNode) || false;
+        let last_b = last_div?.lastChild?.isSameNode(sel.getRangeAt(0).endContainer.parentNode) || false;
+        this.selectManagement.setSelectTextIsNewLine([fir_b, last_b]);
       } else {
         this.selectManagement.setSelectedContent(null);
         this.selectManagement.setSelectedRange(null);
+        this.selectManagement.setSelectTextDiv([]);
+        this.selectManagement.setSelectTextIsNewLine([]);
       }
-
     });
 
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'compositionstart', (event) => {
@@ -101,7 +108,7 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
           if ((tem as HTMLElement).innerText.length > 1){
             let cssText = (tem as HTMLElement).style.cssText;
             for (var n of (tem as HTMLElement).innerText) this.createSpan(n, new_div, cssText);
-          } else if ((tem as HTMLElement).innerText.length == 1) new_div.appendChild(tem);
+          } else if ((tem as HTMLElement).innerHTML == "<br>" || (tem as HTMLElement).innerText.length == 1) new_div.appendChild(tem);
         }
       }
     }
