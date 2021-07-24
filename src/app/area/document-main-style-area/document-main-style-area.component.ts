@@ -14,11 +14,12 @@ export class DocumentMainStyleAreaComponent implements OnInit {
   currentFamilyNum: number = 0;
 
   constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService) {
-    this.font_family_list = ['Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
+    this.font_family_list = ['current', 'Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
       'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
 
-    this.font_family_state = ["#f0f0f0", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"];
+    this.font_family_state = ["#f0f0f0", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"];
     this.currentFamily = fontService.getCurrentFamily();
+    this.font_family_list[0] = this.currentFamily;
   }
 
   ngOnInit(): void {
@@ -32,11 +33,10 @@ export class DocumentMainStyleAreaComponent implements OnInit {
 
     this.changeTextFont(num);
     setTimeout(()=>{
-      this.fontService.setTemFamily();
+      this.fontService.setTemFamily(this.font_family_list[num]);
     }, 10);
   }
 
-  // TODO: multiple line text change
   changeTextFont(num: number) {
     if (this.selectManagement.getSelectedContent!= null && this.selectManagement.getSelectedRange != null) {
         let font = this.font_family_list[num];
@@ -44,17 +44,23 @@ export class DocumentMainStyleAreaComponent implements OnInit {
         let length = node_list.length;
         let node = document.createElement('span');
         let count = 0;
+
+        let first_node, last_node;
         for (let i = 0; i < length; i++) {
           if((node_list[count] as HTMLSpanElement).nodeName == "DIV") {
             let new_div = document.createElement('div');
             let child = Array.from(node_list[count].childNodes);
             for(let n = 0; n < child.length; n++) {
+              if(first_node == null) first_node = (child[n] as Node).childNodes[0];
+              if(i == length-1 && n == child.length-1) last_node = (child[n] as Node).childNodes[0];
               (child[n] as HTMLSpanElement).style.fontFamily = font;
               new_div.appendChild(child[n] as HTMLSpanElement);
             }
             node.appendChild(new_div);
             count++;
           } else {
+            if(first_node == null) first_node = (node_list[count] as Node).childNodes[0];
+            if(i == length-1) last_node = (node_list[count] as Node).childNodes[0];
             (node_list[count] as HTMLSpanElement).style.fontFamily = font;
             node.appendChild(node_list[count]);
           }
@@ -99,6 +105,12 @@ export class DocumentMainStyleAreaComponent implements OnInit {
 
         range.insertNode(node);
         node.replaceWith(...Array.from(node.children));
+
+        range.setStart(first_node as Node, 0);
+        range.setEnd(last_node as Node, 1);
+        window.getSelection()?.addRange(range);
+        this.selectManagement.setSelectedRange(range);
+        this.selectManagement.setSelectedContent(range.cloneContents().childNodes);
     }
   }
 }

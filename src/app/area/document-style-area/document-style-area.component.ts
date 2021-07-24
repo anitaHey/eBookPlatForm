@@ -15,6 +15,10 @@ export class DocumentStyleAreaComponent implements OnInit {
     this.currentFamily = fontService.getCurrentFamily();
     this.currentColor = fontService.getCurrentColor();
     this.currentSize = fontService.getCurrentSize();
+
+    this.fontService.familyChanged$.subscribe(input => {
+      this.currentFamily = input as string;
+    });
   }
 
   ngOnInit(): void {

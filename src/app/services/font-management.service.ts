@@ -14,8 +14,10 @@ export class FontManagementService {
 
   constructor() { }
 
-  setTemFamily() {
-    this.changeFamily.next();
+  setTemFamily(input: string) {
+    this.changeFamily.next(input);
+
+    this.setCurrentFamily(input);
   }
 
   getCurrentColor(): string {

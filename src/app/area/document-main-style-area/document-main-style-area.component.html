@@ -5,14 +5,14 @@
     n_color="black"
     h_bg_color="#f0f0f0"
     h_color="black"
-    text= {{font_family_list[0]}}
+    text= {{currentFamily}}
     setting="w-100"
     font_family= {{currentFamily}}
     (btnClick) = "clickFamily(0)"
     ></app-font-family-button>
     <div class="hr"></div>
     <app-font-family-button
-    *ngFor="let item of font_family_list; index as i"
+    *ngFor="let item of font_family_list| slice:1; index as i"
     n_bg_color= "{{font_family_state[i+1]}}"
     n_color="black"
     h_bg_color="#f0f0f0"
