@@ -47,7 +47,8 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
     this.node_renderer.listen(this.node_element.nativeElement.querySelector(".text_node"), 'mouseup', (event) => {
       var sel = window.getSelection();
       if(sel != null && sel.toString().length > 0) {
-        this.selectManagement.setSelectedContent(sel.getRangeAt(0).cloneContents().childNodes);
+        let node_list = sel.getRangeAt(0).cloneContents().childNodes;
+        this.selectManagement.setSelectedContent(node_list);
         this.selectManagement.setSelectedRange(sel.getRangeAt(0));
         let first_div = sel.getRangeAt(0).startContainer.parentNode?.parentNode;
         let last_div = sel.getRangeAt(0).endContainer.parentNode?.parentNode;
@@ -55,11 +56,35 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
         let fir_b = first_div?.firstChild?.isSameNode(sel.getRangeAt(0).startContainer.parentNode) || false;
         let last_b = last_div?.lastChild?.isSameNode(sel.getRangeAt(0).endContainer.parentNode) || false;
         this.selectManagement.setSelectTextIsNewLine([fir_b, last_b]);
+
+        let cur_family = "";
+        let isSame = true;
+        for (let i = 0; i < node_list.length; i++) {
+          if((node_list[i] as HTMLSpanElement).nodeName == "DIV") {
+            let child = Array.from(node_list[i].childNodes);
+            for(let n = 0; n < child.length; n++) {
+              if(cur_family == "")
+                cur_family = this.fontService.removeQuotes((child[n] as HTMLSpanElement).style.fontFamily);
+              else if(cur_family != this.fontService.removeQuotes((child[n] as HTMLSpanElement).style.fontFamily)) {
+                isSame = false;
+                break;
+              }
+            }
+          } else {
+            if(cur_family == "")
+              cur_family = this.fontService.removeQuotes((node_list[i] as HTMLSpanElement).style.fontFamily);
+            else if(cur_family != this.fontService.removeQuotes((node_list[i] as HTMLSpanElement).style.fontFamily))
+              isSame = false;
+          }
+
+          if(!isSame) {
+            cur_family = " ";
+            break;
+          }
+        }
+        this.fontService.setTemFamily(cur_family);
       } else {
-        this.selectManagement.setSelectedContent(null);
-        this.selectManagement.setSelectedRange(null);
-        this.selectManagement.setSelectTextDiv([]);
-        this.selectManagement.setSelectTextIsNewLine([]);
+        this.singleSelectText();
       }
     });
 
@@ -87,6 +112,7 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
 
         this.setCurrentOffset(node, num);
       }
+      this.singleSelectText();
     });
   }
 
@@ -189,5 +215,15 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
         else count += tem.childNodes.length;
       }
     }
+  }
+
+  singleSelectText() {
+    var sel = window.getSelection();
+    if((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily.length > 0)
+          this.fontService.setTemFamily(this.fontService.removeQuotes((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily));
+    this.selectManagement.setSelectedContent(null);
+    this.selectManagement.setSelectedRange(null);
+    this.selectManagement.setSelectTextDiv([]);
+    this.selectManagement.setSelectTextIsNewLine([]);
   }
 }
