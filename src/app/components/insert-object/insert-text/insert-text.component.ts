@@ -84,7 +84,7 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
         }
         this.fontService.setTemFamily(cur_family);
       } else {
-        this.singleSelectText();
+        this.singleSelectText(false);
       }
     });
 
@@ -111,8 +111,10 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
         this.addNode(child, node);
 
         this.setCurrentOffset(node, num);
+        this.singleSelectText(true);
+      } else {
+        this.singleSelectText(false);
       }
-      this.singleSelectText();
     });
   }
 
@@ -217,10 +219,19 @@ export class InsertTextComponent extends BasicObjComponent implements OnInit, Af
     }
   }
 
-  singleSelectText() {
+  singleSelectText(isKey: boolean) {
     var sel = window.getSelection();
-    if((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily.length > 0)
-          this.fontService.setTemFamily(this.fontService.removeQuotes((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily));
+
+    if(isKey) {
+      if((sel?.getRangeAt(0).startContainer as HTMLSpanElement).style.fontFamily.length > 0) {
+        this.fontService.setTemFamily(this.fontService.removeQuotes((sel?.getRangeAt(0).startContainer as HTMLSpanElement).style.fontFamily));
+      }
+    } else {
+      if((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily.length > 0) {
+        this.fontService.setTemFamily(this.fontService.removeQuotes((sel?.getRangeAt(0).startContainer.parentNode as HTMLSpanElement).style.fontFamily));
+      }
+    }
+
     this.selectManagement.setSelectedContent(null);
     this.selectManagement.setSelectedRange(null);
     this.selectManagement.setSelectTextDiv([]);
