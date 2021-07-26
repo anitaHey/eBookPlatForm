@@ -23,6 +23,8 @@ import { DocumentStyleAreaComponent } from './area/document-style-area/document-
 import { DocumentMainStyleAreaComponent } from './area/document-main-style-area/document-main-style-area.component';
 import { BasicButtonComponent } from './components/button/basic-button/basic-button.component';
 import { FontFamilyButtonComponent } from './components/button/font-family-button/font-family-button.component';
+import { TextFamilyComponent } from './area/document-main-style-area/text-family/text-family.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { FontFamilyButtonComponent } from './components/button/font-family-butto
     DocumentMainStyleAreaComponent,
     BasicButtonComponent,
     FontFamilyButtonComponent,
+    TextFamilyComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { FontFamilyButtonComponent } from './components/button/font-family-butto
     BrowserAnimationsModule,
     DragDropModule,
     ContenteditableValueAccessorModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

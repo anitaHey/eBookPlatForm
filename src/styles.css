@@ -360,6 +360,7 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
+
 * {
   position: relative;
 }
@@ -390,4 +391,11 @@ html, body {
   border-radius: 7px;
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2);
   background-color: #c7c1c1bc;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.text-middle {
+  place-content: center;
 }

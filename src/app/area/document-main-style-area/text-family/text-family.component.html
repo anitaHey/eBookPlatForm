@@ -1,0 +1,32 @@
+<app-font-family-button
+    n_bg_color= {{font_family_state[0]}}
+    n_color="black"
+    h_bg_color="#f0f0f0"
+    h_color="black"
+    text= {{currentFamily}}
+    setting="w-100"
+    font_family= {{currentFamily}}
+    (btnClick) = "clickFamily(0)"
+></app-font-family-button>
+<div class="hr"></div>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-middle">
+        所有字型
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-font-family-button
+    *ngFor="let item of font_family_list| slice:1; index as i"
+    n_bg_color= "{{font_family_state[i+1]}}"
+    n_color="black"
+    h_bg_color="#f0f0f0"
+    h_color="black"
+    text= {{font_family_list[i+1]}}
+    setting="w-100"
+    font_family= {{item}}
+    (btnClick) = "clickFamily(i+1)"
+  ></app-font-family-button>
+  </mat-expansion-panel>
+</mat-accordion>
