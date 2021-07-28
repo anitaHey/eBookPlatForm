@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FontManagementService } from 'src/app/services/font-management.service';
+import { FontManagementService } from 'src/app/services/text-services/font-management.service';
 import { SelectManagementService } from 'src/app/services/select-management.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class TextFamilyComponent implements OnInit {
   font_family_state: string[];
   currentFamily!: string;
   currentFamilyNum: number = 0;
+  toggle_text: boolean = false;
 
   constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService) {
     this.font_family_list = ['current', 'Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
@@ -23,6 +24,13 @@ export class TextFamilyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  expandChange() {
+    if(this.selectManagement.getSelectedRange() != null) {
+      window.getSelection()?.removeAllRanges();
+      window.getSelection()?.addRange(this.selectManagement.getSelectedRange() as Range);
+    }
   }
 
   clickFamily(num: number): void {

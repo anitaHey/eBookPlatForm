@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FontManagementService } from 'src/app/services/font-management.service';
+import { FontManagementService } from 'src/app/services/text-services/font-management.service';
 
 @Component({
   selector: 'app-font-family-button',

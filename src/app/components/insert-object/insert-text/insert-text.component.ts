@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { BasicObjComponent } from '../basic-obj/basic-obj.component';
 import { PaperManagementService } from 'src/app/services/paper-management.service';
-import { FontManagementService } from 'src/app/services/font-management.service';
+import { FontManagementService } from 'src/app/services/text-services/font-management.service';
 import { SelectManagementService } from 'src/app/services/select-management.service';
 
 @Component({

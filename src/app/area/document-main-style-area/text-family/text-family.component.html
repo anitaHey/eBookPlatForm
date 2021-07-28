@@ -11,7 +11,15 @@
 <div class="hr"></div>
 
 <mat-accordion>
-  <mat-expansion-panel hideToggle>
+  <mat-expansion-panel (expandedChange)="expandChange()">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-middle">
+        造型群組
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (expandedChange)="expandChange()">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-middle">
         所有字型
