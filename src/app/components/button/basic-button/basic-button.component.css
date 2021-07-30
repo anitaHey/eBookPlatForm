@@ -8,7 +8,7 @@ button:hover {
 }
 
 fa-icon, img {
-  vertical-align: middle;
+  display: inline-flex;
 }
 
 .left > fa-icon,

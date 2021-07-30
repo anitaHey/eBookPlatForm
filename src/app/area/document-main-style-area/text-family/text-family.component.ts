@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FontManagementService } from 'src/app/services/text-services/font-management.service';
 import { SelectManagementService } from 'src/app/services/select-management.service';
+import { MatDialog } from '@angular/material/dialog';
+import { StyleClassDialogComponent } from 'src/app/components/dialog/style-class-dialog/style-class-dialog.component';
 
 @Component({
   selector: 'app-text-family',
@@ -14,9 +16,8 @@ export class TextFamilyComponent implements OnInit {
   currentFamilyNum: number = 0;
   toggle_text: boolean = false;
 
-  constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService) {
-    this.font_family_list = ['current', 'Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
-      'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
+  constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService, public dialog: MatDialog) {
+    this.font_family_list = fontService.getAllFontFamily();
 
     this.font_family_state = ["#f0f0f0", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"];
     this.currentFamily = fontService.getCurrentFamily();
@@ -24,6 +25,14 @@ export class TextFamilyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(StyleClassDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   expandChange() {

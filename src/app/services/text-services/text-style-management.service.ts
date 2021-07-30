@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TextStyleManagementService {
   static textStyle = class {
+    name: string = "";
     fontColor: string = "black";
     fontSize: number = 20;
     fontFamily: string = "Verdana";
@@ -12,10 +14,11 @@ export class TextStyleManagementService {
     constructor() {
     }
 
-    setNewStyle(newColor: string, newSize: number, newFamily: string) {
-        this.fontColor = newColor;
-        this.fontSize = newSize;
-        this.fontFamily = newFamily;
+    setNewStyle(name:string, newColor: string, newSize: number, newFamily: string) {
+      this.name = name;
+      this.fontColor = newColor;
+      this.fontSize = newSize;
+      this.fontFamily = newFamily;
     }
 
     getCurStyle() {
@@ -25,12 +28,37 @@ export class TextStyleManagementService {
         "color": this.fontColor
       };
     }
+
+    getStyleName() {
+      return this.name;
+    }
   }
 
-  current_style: InstanceType<typeof TextStyleManagementService.textStyle>[] = [];
+  current_style: Array<InstanceType<typeof TextStyleManagementService.textStyle>> = [];
+  styleChange = new Subject();
+  styleChanged$ = this.styleChange.asObservable();
   constructor() { }
 
   addNewStyleClass(newColor: string, newSize: number, newFamily: string) {
     this.current_style.push(new TextStyleManagementService.textStyle());
+    this.styleChange.next();
+  }
+
+  updateStyle(num: number, name:string, newColor: string, newSize: number, newFamily: string) {
+    this.current_style[num].setNewStyle(name, newColor, newSize, newFamily);
+    this.styleChange.next();
+  }
+
+  getStyleByName(name: string) {
+    return this.current_style.filter(s => s.getStyleName() === name)[0];
+  }
+
+  removeStyle(num: number) {
+    this.current_style.splice(num,1);
+    this.styleChange.next();
+  }
+
+  getTextStyleList() {
+    return this.current_style;
   }
 }

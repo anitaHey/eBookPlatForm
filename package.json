@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~12.0.3",
+    "@angular/animations": "^12.1.4",
     "@angular/cdk": "^12.0.3",
     "@angular/common": "~12.0.3",
     "@angular/compiler": "~12.0.3",
@@ -27,7 +27,10 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@ng-stack/contenteditable": "^1.1.1",
+    "@thebespokepixel/es-tinycolor": "^2.1.1",
     "@tinkoff/angular-contenteditable-accessor": "^1.1.0",
+    "@types/tinycolor2": "^1.4.3",
+    "material-community-components": "^10.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

@@ -25,6 +25,15 @@ import { BasicButtonComponent } from './components/button/basic-button/basic-but
 import { FontFamilyButtonComponent } from './components/button/font-family-button/font-family-button.component';
 import { TextFamilyComponent } from './area/document-main-style-area/text-family/text-family.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { BasicStyleButtonComponent } from './components/button/basic-style-button/basic-style-button.component';
+import { StyleClassButtonComponent } from './components/button/style-class-button/style-class-button.component';
+import { StyleClassDialogComponent } from './components/dialog/style-class-dialog/style-class-dialog.component';
+import { MccColorPickerModule} from 'material-community-components/color-picker';
 
 @NgModule({
   declarations: [
@@ -44,6 +53,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BasicButtonComponent,
     FontFamilyButtonComponent,
     TextFamilyComponent,
+    BasicStyleButtonComponent,
+    StyleClassButtonComponent,
+    StyleClassDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +66,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DragDropModule,
     ContenteditableValueAccessorModule,
     FormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MccColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,18 @@
         造型群組
       </mat-panel-title>
     </mat-expansion-panel-header>
+    <app-basic-button
+    n_bg_color= "#fff"
+    n_color="black"
+    h_bg_color="#f0f0f0"
+    h_color="black"
+    text= "新增造型"
+    setting="w-100 left"
+    mat-button
+    (btnClick)="openDialog()"
+    icon_text="add_icon"
+    icon_size="18px">
+    </app-basic-button>
   </mat-expansion-panel>
 
   <mat-expansion-panel (expandedChange)="expandChange()">

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faChevronLeft, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faImage, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-basic-button',
@@ -54,6 +54,8 @@ export class BasicButtonComponent implements OnInit {
       this.icon = faChevronLeft;
     else if(input == "pic_image")
       this.icon = faImage;
+    else if(input == "add_icon")
+      this.icon = faPlusCircle;
   }
 
 }

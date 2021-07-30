@@ -18,9 +18,7 @@
   <div class="all">
   <div *ngIf="canResize" [hidden]="!showResize" class="resizeGroup">
     <div *ngFor="let dir of allHandleName" class="moveNode {{dir}}"></div>
-    <div *ngFor="let dir of allHandleName" class="handleNode {{dir}}" data-dir="{{dir}}"></div>
-
-
+    <div *ngFor="let dir of allHandleName" class="handleNode {{dir}}" [attr.data-dir]="dir"></div>
   </div>
 
   <ng-container *ngTemplateOutlet='templateRef' class="child"></ng-container>

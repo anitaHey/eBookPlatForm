@@ -11,8 +11,16 @@ export class FontManagementService {
   fontColor: string = "black";
   fontSize: number = 20;
   fontFamily: string = "Verdana";
+  font_family_list: string[];
 
-  constructor() { }
+  constructor() {
+    this.font_family_list = ['current', 'Noto Sans TC', 'Arial', 'Sans Serif', 'Comic Sans MS', 'Times New Roman', 'Courier New',
+      'Verdana', 'Trebuchet MS', 'Arial Black', 'Impact', 'Bookman', 'Garamond', 'Palatino', 'Georgia'];
+  }
+
+  getAllFontFamily() {
+    return this.font_family_list;
+  }
 
   setTemFamily(input: string) {
     this.changeFamily.next(input);
