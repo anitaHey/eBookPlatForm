@@ -30,7 +30,7 @@
     "@thebespokepixel/es-tinycolor": "^2.1.1",
     "@tinkoff/angular-contenteditable-accessor": "^1.1.0",
     "@types/tinycolor2": "^1.4.3",
-    "material-community-components": "^10.0.0",
+    "material-community-components": "git+https://github.com/tiaguinho/material-community-components.git",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

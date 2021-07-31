@@ -1,0 +1,79 @@
+@import "common";
+
+.btn-picker {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  position: relative;
+  background-image: $alpha-background;
+  background-repeat: repeat;
+  background-size: 14px;
+  border-radius: 3px;
+  border: 2px solid #dddddd;
+
+  .btn-picker-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.empty {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfAQMAAAAlYIR6AAAABlBMVEX/////EBC8L+WmAAAAJ0lEQVR42mM4wAAED0DEBxBRASJsQIQciOAHEewNQIIZpJCRjgr5AP7LD2UBZrkqAAAAAElFTkSuQmCC') !important;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+  &.disabled {
+    opacity: 0.5;
+  }
+}
+
+.mcc-color-picker-overlay {
+  display: flex;
+  width: 270px;
+  min-height: 80px;
+  position: relative;
+  border-radius: 4px;
+  flex-direction: column;
+  padding: 0;
+  background: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  &.alpha-enabled {
+    width: 316px;
+  }
+
+  .mcc-color-picker-preview {
+    width: 100%;
+    height: 8px;
+  }
+}
+
+.transparent {
+  display: block;
+  width: 32px;
+  height: 2px;
+  border-bottom: 2px solid red;
+  transform: translateY(-3px) translateX(-2px) rotate(45deg);
+  -webkit-transform: translateY(-2px) translateX(-11px) rotate(45deg);
+  position: absolute;
+}
+
+.mcc-color-picker-actions {
+  display: flex;
+  padding: 4px;
+  border-top: 1px #dddddd solid;
+
+  button {
+    text-transform: uppercase;
+  }
+}
+
+::ng-deep mat-form-field {
+  mcc-color-picker {
+    .btn-picker {
+      margin-right: 4px;
+      margin-left: 4px;
+    }
+  }
+}

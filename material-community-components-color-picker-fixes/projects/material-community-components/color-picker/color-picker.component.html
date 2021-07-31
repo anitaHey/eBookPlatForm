@@ -1,0 +1,83 @@
+<!-- color picker overlay -->
+<ng-container *ngIf="overlay">
+  <button
+    type="button"
+    class="btn-picker"
+    cdkOverlayOrigin
+    #triggerButton="cdkOverlayOrigin"
+    (click)="toggle()"
+    [ngClass]="{ empty: selectedColor === emptyColor, disabled: disabled }"
+  >
+    <span class="btn-picker-background" [style.backgroundColor]="selectedColor"></span>
+  </button>
+
+<!--  TODO: try to center with the overlay centerHorizontally on mobile instead of cdkConnectedOverlayPush-->
+  <ng-template
+    cdkConnectedOverlay
+    cdkConnectedOverlayHasBackdrop
+    cdkConnectedOverlayBackdropClass="mcc-color-picker-backdrop"
+    cdkConnectedOverlayPush
+    [cdkConnectedOverlayOrigin]="triggerButton"
+    [cdkConnectedOverlayOpen]="isOpen"
+    (backdropClick)="backdropClick()"
+  >
+    <ng-template [cdkPortalOutlet]="overlayPanel"></ng-template>
+  </ng-template>
+</ng-container>
+
+<!-- color picker flat -->
+<ng-template *ngIf="!overlay" [cdkPortalOutlet]="overlayPanel"></ng-template>
+
+<!-- color picker component content -->
+<ng-template cdkPortal #overlayPanel="cdkPortal">
+  <div class="mcc-color-picker-overlay mat-elevation-z4" [ngClass]="{ 'alpha-enabled': alpha }" role="dialog" aria-label="Color picker">
+    <mcc-color-picker-selector
+      *ngIf="!hideColorPickerSelector"
+      [selectedColor]="tmpSelectedColor$ | async"
+      [hideHexForms]="hideHexForms"
+      [height]="colorPickerSelectorHeight"
+      (changeSelectedColor)="updateTmpSelectedColor($event)"
+    >
+    </mcc-color-picker-selector>
+
+    <!-- show used colors on top -->
+    <ng-container *ngIf="!hideUsedColors && usedColorsPosition == 'top'">
+      <mcc-color-picker-collection
+        [label]="usedColorLabel"
+        [size]="usedSizeColors"
+        [transparent]="!hideTransparent"
+        [hideEmpty]="hideEmpty"
+        [colors]="usedColors$ | async"
+        (changeColor)="updateTmpSelectedColor($event)"
+      >
+      </mcc-color-picker-collection>
+    </ng-container>
+
+    <!-- render user collections -->
+    <ng-content></ng-content>
+
+    <!-- show used colors on bottom -->
+    <ng-container *ngIf="!hideUsedColors && usedColorsPosition == 'bottom'">
+      <mcc-color-picker-collection
+        [label]="usedColorLabel"
+        [size]="usedSizeColors"
+        [transparent]="!hideTransparent"
+        [hideEmpty]="hideEmpty"
+        [colors]="usedColors$ | async"
+        (changeColor)="updateTmpSelectedColor($event)"
+      >
+      </mcc-color-picker-collection>
+    </ng-container>
+
+    <div *ngIf="!hideButtons" class="mcc-color-picker-actions">
+      <div style="flex: 1 auto;"></div>
+      <button mat-button role="button" aria-label="Cancel" (click)="cancelSelection()">
+        {{ btnCancelLabel }}
+      </button>
+
+      <button mat-button role="button" aria-label="Confirm" (click)="confirmSelectedColor()">
+        {{ btnConfirmLabel }}
+      </button>
+    </div>
+  </div>
+</ng-template>

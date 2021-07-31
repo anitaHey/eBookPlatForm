@@ -2,7 +2,6 @@ import { ResizableDirective } from './directive/resizable.directive';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -33,7 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BasicStyleButtonComponent } from './components/button/basic-style-button/basic-style-button.component';
 import { StyleClassButtonComponent } from './components/button/style-class-button/style-class-button.component';
 import { StyleClassDialogComponent } from './components/dialog/style-class-dialog/style-class-dialog.component';
-import { MccColorPickerModule} from 'material-community-components/color-picker';
+
 
 @NgModule({
   declarations: [
@@ -71,8 +70,7 @@ import { MccColorPickerModule} from 'material-community-components/color-picker'
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    MatIconModule,
-    MccColorPickerModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

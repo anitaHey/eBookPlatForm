@@ -399,3 +399,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-middle {
   place-content: center;
 }
+
+/* .mat-button-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.option-color {
+  height: 22px;
+  width: 22px;
+} */

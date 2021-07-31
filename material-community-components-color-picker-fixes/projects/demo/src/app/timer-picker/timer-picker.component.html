@@ -1,0 +1,63 @@
+<h1 class="page-title">
+  <mat-icon>timer</mat-icon>
+  Timer Picker
+</h1>
+<p class="page-subtitle">Some examples of how to use the
+  <span>mcc-timer-picker</span> component</p>
+
+<mat-tab-group>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Overview
+    </ng-template>
+
+    <mat-grid-list cols="4" rowHeight="70px">
+      <mat-grid-tile colspan="3">
+        <h2>MccTimerPicker</h2>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <a href="https://github.com/tiaguinho/material-community-components/tree/master/src/lib/timer-picker"
+          target="_blank">
+          <img src="/assets/img/source-code.png"
+            alt="Source Code" class="source-code" />
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <p>This is a implementation of timer picker for material design.</p>
+    <p>To use this component, just import the module from
+      <code>material-community-component</code> package.</p>
+
+    <pre class="code-snippet"><code class="lang-typescript">  import {{ '{' }} MccTimerPickerModule {{ '}' }} from 'material-community-components/timer-picker';
+
+  <span class="hljs-variable">@NgModule</span>({{ '{' }}
+    ...
+    <span class="hljs-attribute">imports</span>: [
+      MccTimerPickerModule
+    ]
+    ...
+  {{ '}' }})
+  </code>
+</pre>
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      API
+    </ng-template>
+
+    <app-timer-picker-api></app-timer-picker-api>
+  </mat-tab>
+
+  <mat-tab label="Examples">
+    <ng-template mat-tab-label>
+      Examples
+    </ng-template>
+
+    <app-timer-picker-examples></app-timer-picker-examples>
+  </mat-tab>
+
+</mat-tab-group>

@@ -1,0 +1,22 @@
+<div class="mcc-color-picker-collection" role="listbox" aria-label="Select a color">
+  <h3>{{ label }}</h3>
+
+  <button
+    mat-mini-fab
+    *ngIf="transparent"
+    class="mcc-color-picker-remove-color mat-elevation-z0"
+    role="option"
+    aria-label="transparent"
+    (click)="setTransparent()"
+  >
+    <span class="mcc-color-picker-transparent"></span>
+  </button>
+
+  <mcc-color-picker-option
+    *ngFor="let color of colors"
+    [color]="color"
+    [selectedColor]="selectedColor"
+    (colorSelected)="setColor($event)"
+  >
+  </mcc-color-picker-option>
+</div>

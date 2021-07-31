@@ -1,0 +1,48 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "material-community-components",
+  "version": "10.0.0",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public-api.ts"
+    },
+    "dest": "../../dist/material-community-components"
+  },
+  "author": "Tiago Temporin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tiaguinho/material-community-components/issues"
+  },
+  "homepage": "https://github.com/tiaguinho/material-community-components#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiaguinho/material-community-components.git"
+  },
+  "keywords": [
+    "color-picker",
+    "timer-picker",
+    "scrollspy",
+    "speed-dial",
+    "color picker",
+    "timer picker",
+    "color",
+    "angular",
+    "material",
+    "timer",
+    "ng",
+    "ng-color-picker",
+    "ngx-color-picker",
+    "ng-timer-picker",
+    "ngx-timer-picker",
+    "material-community-components"
+  ],
+  "peerDependencies": {
+    "@angular/core": ">= 9",
+    "@angular/common": ">= 9",
+    "@angular/animations": ">= 9",
+    "@angular/cdk": ">= 9",
+    "@angular/forms": ">= 9",
+    "@angular/material": ">= 9",
+    "@thebespokepixel/es-tinycolor": "^2.1.1"
+  }
+}

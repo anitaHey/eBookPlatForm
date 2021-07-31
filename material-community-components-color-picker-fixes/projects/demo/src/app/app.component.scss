@@ -1,0 +1,81 @@
+.mat-toolbar {
+  color: #ffffff;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 270px;
+
+  .mat-toolbar {
+    color: #000000;
+  }
+
+  .mat-icon {
+    position: relative;
+    top: 5px;
+  }
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-icon {
+  font-size: 1.5rem;
+}
+
+.active {
+  background: rgba(76, 175, 80, .15);
+  color: #4caf50;
+}
+
+:host {
+  display: flex;
+  min-height: 100%; // used percent instead of vh due to safari bug.
+  flex-direction: column;
+}
+
+.container {
+  display: block;
+  width: 95%;
+  margin: 0 auto;
+  flex: 1;
+  padding-bottom: 100px;
+}
+
+footer {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  flex-flow: row nowrap;
+  padding: 15px 20px;
+  background-color: #4caf50;
+
+  div {
+    width: 33%;
+
+    &.angular img {
+      height: 70px;
+    }
+    &.version {
+      color: #ffffff;
+      text-align: center;
+    }
+    &.github {
+      text-align: end;
+
+      img {
+        height: 55px;
+      }
+    }
+  }
+}
