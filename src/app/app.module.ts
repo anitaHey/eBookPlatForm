@@ -28,11 +28,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 import { BasicStyleButtonComponent } from './components/button/basic-style-button/basic-style-button.component';
 import { StyleClassButtonComponent } from './components/button/style-class-button/style-class-button.component';
 import { StyleClassDialogComponent } from './components/dialog/style-class-dialog/style-class-dialog.component';
-
+import { ColorPickerModule } from '@iplab/ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -70,7 +69,7 @@ import { StyleClassDialogComponent } from './components/dialog/style-class-dialo
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    MatIconModule
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
