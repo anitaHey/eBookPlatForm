@@ -17,8 +17,7 @@
     <input type="number" [(ngModel)]="curSize" matInput>
   </mat-form-field>
   <br>
-  <chrome-picker *ngIf="colorVisible" [control]="colorControl"></chrome-picker>
-  <div *ngIf="colorVisible" class="overlay" (click)="overlayClick($event)"></div>
+  <app-color-picker></app-color-picker>
   <!-- <mat-form-field appearance="fill">
     <mat-label>文字大小</mat-label>
     <input type="number" [(ngModel)]="curSize" matInput>

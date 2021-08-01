@@ -31,7 +31,8 @@ import { MatInputModule } from '@angular/material/input';
 import { BasicStyleButtonComponent } from './components/button/basic-style-button/basic-style-button.component';
 import { StyleClassButtonComponent } from './components/button/style-class-button/style-class-button.component';
 import { StyleClassDialogComponent } from './components/dialog/style-class-dialog/style-class-dialog.component';
-import { ColorPickerModule } from '@iplab/ngx-color-picker';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorPickerComponent } from './components/button/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ColorPickerModule } from '@iplab/ngx-color-picker';
     BasicStyleButtonComponent,
     StyleClassButtonComponent,
     StyleClassDialogComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

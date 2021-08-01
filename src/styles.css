@@ -400,12 +400,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   place-content: center;
 }
 
-/* .mat-button-wrapper {
-  height: 100%;
-  width: 100%;
+button.pressBtn {
+  background-color: transparent;
+  /* font-size: 14px; */
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+  border: 0;
+  padding: 5px 16px;
 }
 
-.option-color {
-  height: 22px;
-  width: 22px;
-} */
+button.pressBtn.ok {
+  background-color: #dfdfdf;
+}
+
+button.pressBtn:hover {
+  background-color: #f0f0f0;
+}
+
+div.color-picker *{
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

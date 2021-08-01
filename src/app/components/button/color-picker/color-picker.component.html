@@ -1,0 +1,15 @@
+<input [style.background]="color"
+       [cpAlphaChannel]="'always'"
+       [cpPresetColors]="saveColorList"
+       [(colorPicker)]="color"
+       [cpOKButton]="true"
+       [cpSaveClickOutside]="false"
+       [cpCancelButton]="true"
+       [cpCancelButtonClass]= "'pressBtn'"
+       [cpOKButtonClass]= "'pressBtn ok'"
+       [cpCancelButtonText]="'取消'"
+       [cpOKButtonText]="'確認'"
+       [cpMaxPresetColorsLength] = 12
+       [cpPresetEmptyMessage] = "'沒有儲存的顏色'"
+       (colorPickerSelect) = "changeColor(color)"
+/>
