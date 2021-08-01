@@ -1,0 +1,16 @@
+.sm_title {
+  font-weight: 600;
+}
+
+.card_m {
+  margin-top: 5px;
+}
+
+mat-card, mat-card-content {
+  width: fit-content;
+  height: fit-content;
+}
+
+.mat-card-content {
+  padding: 10px;
+}

@@ -1,6 +1,11 @@
 <h2 mat-dialog-title>新增文字造型群組</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field appearance="fill">
+    <mat-label>造型群組名稱</mat-label>
+    <input type="input" matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
     <mat-label>字型選擇</mat-label>
     <mat-select [(value)]="curFamily">
       <mat-option
@@ -18,12 +23,12 @@
   </mat-form-field>
   <br>
   <app-color-picker></app-color-picker>
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>文字大小</mat-label>
-    <input type="number" [(ngModel)]="curSize" matInput>
-  </mat-form-field> -->
-
-
+  <br>
+  <br>
+  <span class="sm_title">文字造型預覽</span>
+  <mat-card class="card_m">
+    <mat-card-content [ngStyle]="getFontStyles()">測試Test123</mat-card-content>
+  </mat-card>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>取消</button>
