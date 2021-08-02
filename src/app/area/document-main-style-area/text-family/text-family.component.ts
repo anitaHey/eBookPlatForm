@@ -1,3 +1,4 @@
+import { TextStyleManagementService } from './../../../services/text-services/text-style-management.service';
 import { Component, OnInit } from '@angular/core';
 import { FontManagementService } from 'src/app/services/text-services/font-management.service';
 import { SelectManagementService } from 'src/app/services/select-management.service';
@@ -14,14 +15,16 @@ export class TextFamilyComponent implements OnInit {
   font_family_state: string[];
   currentFamily!: string;
   currentFamilyNum: number = 0;
+  currentFontStyle: Array<InstanceType<typeof TextStyleManagementService.textStyle>> = [];
   toggle_text: boolean = false;
 
-  constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService, public dialog: MatDialog) {
+  constructor(private fontService: FontManagementService, private selectManagement: SelectManagementService, public dialog: MatDialog, private textStyleManagement: TextStyleManagementService) {
     this.font_family_list = fontService.getAllFontFamily();
 
     this.font_family_state = ["#f0f0f0", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"];
     this.currentFamily = fontService.getCurrentFamily();
     this.font_family_list[0] = this.currentFamily;
+    this.currentFontStyle = this.textStyleManagement.getTextStyleList();
   }
 
   ngOnInit(): void {

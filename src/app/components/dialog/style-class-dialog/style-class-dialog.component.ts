@@ -1,3 +1,4 @@
+import { TextStyleManagementService } from './../../../services/text-services/text-style-management.service';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FontManagementService } from 'src/app/services/text-services/font-management.service';
@@ -21,24 +22,22 @@ export class StyleClassDialogComponent implements OnInit {
   curFamily: string;
   curSize: number;
   curColor: string;
+  curName : string;
   fm_control: any;
   fm_control1: any;
   matcher: any;
   matcher1: any;
   disable: boolean = true;
 
-  constructor(private fontService: FontManagementService, private dialogRef: MatDialogRef<StyleClassDialogComponent>) {
-    this.font_family_list = fontService.getAllFontFamily();
-    this.curFamily = fontService.getCurrentFamily();
-    this.curSize = fontService.getCurrentSize();
+  constructor(private fontService: FontManagementService, private dialogRef: MatDialogRef<StyleClassDialogComponent>, private textStyleManagement: TextStyleManagementService) {
+    this.font_family_list = this.fontService.getAllFontFamily();
+    this.curFamily = this.fontService.getCurrentFamily();
+    this.curSize = this.fontService.getCurrentSize();
     this.curColor = "#000";
-    dialogRef.disableClose = true;
-    dialogRef.beforeClosed().subscribe(result => {
-      if(this.fm_control.hasError('required') || this.fm_control1.hasError('required')) {
-        this.disable = false;
-      } else {
-        this.disable = true;
-      }
+    this.curName = "";
+    this.dialogRef.disableClose = true;
+    this.dialogRef.afterClosed().subscribe(result => {
+      this.textStyleManagement.addNewStyleClass(this.curName, this.curColor, this.curSize, this.curFamily);
     });
 
     this.fm_control = new FormControl('', [

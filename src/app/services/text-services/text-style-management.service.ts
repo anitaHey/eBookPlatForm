@@ -39,8 +39,10 @@ export class TextStyleManagementService {
   styleChanged$ = this.styleChange.asObservable();
   constructor() { }
 
-  addNewStyleClass(newColor: string, newSize: number, newFamily: string) {
-    this.current_style.push(new TextStyleManagementService.textStyle());
+  addNewStyleClass(name:string, newColor: string, newSize: number, newFamily: string) {
+    let tem = new TextStyleManagementService.textStyle();
+    tem.setNewStyle(name, newColor, newSize, newFamily);
+    this.current_style.push(tem);
     this.styleChange.next();
   }
 

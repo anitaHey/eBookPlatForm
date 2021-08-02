@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
   <mat-form-field appearance="fill">
     <mat-label>造型群組名稱</mat-label>
-    <input type="input" matInput [formControl]="fm_control" [errorStateMatcher]="matcher" required>
+    <input type="input" matInput [(ngModel)]="curName" [formControl]="fm_control" [errorStateMatcher]="matcher" required>
     <mat-error *ngIf="changeSaveDisable()[0]">
       此欄位<strong>必填</strong>
     </mat-error>
