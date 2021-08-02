@@ -2,7 +2,10 @@
 <mat-dialog-content class="mat-typography">
   <mat-form-field appearance="fill">
     <mat-label>造型群組名稱</mat-label>
-    <input type="input" matInput>
+    <input type="input" matInput [formControl]="fm_control" [errorStateMatcher]="matcher" required>
+    <mat-error *ngIf="changeSaveDisable()[0]">
+      此欄位<strong>必填</strong>
+    </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field appearance="fill">
@@ -19,10 +22,15 @@
   <br>
   <mat-form-field appearance="fill">
     <mat-label>文字大小</mat-label>
-    <input type="number" [(ngModel)]="curSize" matInput>
+    <input type="number" [(ngModel)]="curSize" [formControl]="fm_control1" [errorStateMatcher]="matcher1" required matInput>
+    <mat-error *ngIf="changeSaveDisable()[1]">
+      此欄位<strong>必填</strong>
+    </mat-error>
   </mat-form-field>
   <br>
-  <app-color-picker></app-color-picker>
+  <app-color-picker
+  (colorChange) = "changeFontColor($event)"
+  ></app-color-picker>
   <br>
   <br>
   <span class="sm_title">文字造型預覽</span>
@@ -32,5 +40,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>取消</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>儲存更改</button>
+  <button mat-button [mat-dialog-close]="true" [disabled]="disable" cdkFocusInitial>儲存更改</button>
 </mat-dialog-actions>

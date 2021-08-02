@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StyleColorManagementService } from 'src/app/services/style-color-management.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { StyleColorManagementService } from 'src/app/services/style-color-manage
 export class ColorPickerComponent implements OnInit {
   color: string = "#000";
   saveColorList: string[] = [];
+  @Output() colorChange = new EventEmitter<string>();
   constructor(private colorManagement: StyleColorManagementService) {
     this.saveColorList = colorManagement.getAllColor();
   }
@@ -19,5 +20,7 @@ export class ColorPickerComponent implements OnInit {
   changeColor(color: string): void {
     this.colorManagement.addColorToList(color);
     this.saveColorList = this.colorManagement.getAllColor();
+
+    this.colorChange.emit(color);
   }
 }

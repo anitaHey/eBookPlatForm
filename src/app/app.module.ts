@@ -17,7 +17,7 @@ import { InsertTextComponent } from './components/insert-object/insert-text/inse
 import { BasicObjComponent } from './components/insert-object/basic-obj/basic-obj.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ContenteditableValueAccessorModule } from '@tinkoff/angular-contenteditable-accessor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumentStyleAreaComponent } from './area/document-style-area/document-style-area.component';
 import { DocumentMainStyleAreaComponent } from './area/document-main-style-area/document-main-style-area.component';
 import { BasicButtonComponent } from './components/button/basic-button/basic-button.component';
@@ -73,7 +73,8 @@ import { ColorPickerComponent } from './components/button/color-picker/color-pic
     MatSelectModule,
     MatInputModule,
     ColorPickerModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
