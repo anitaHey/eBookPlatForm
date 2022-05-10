@@ -26,11 +26,11 @@ export class BasicObjComponent implements OnInit, AfterViewInit {
   @Input() templateRef!: TemplateRef<any>;
 
   allHandleName: string[];
-  translateX : number = 0;
-  translateY : number = 0;
+  translateX: number = 0;
+  translateY: number = 0;
 
   onMouseOver: Function;
-  @Output() mouseOver : EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() mouseOver: EventEmitter<MouseEvent> = new EventEmitter();
 
   constructor(private element: ElementRef, private renderer: Renderer2, private paperManagementService: PaperManagementService) {
     this.allHandleName = ['resize-s', 'resize-e', 'resize-se', 'resize-sw', 'resize-w', 'resize-nw', 'resize-n', 'resize-ne'];
@@ -44,7 +44,7 @@ export class BasicObjComponent implements OnInit, AfterViewInit {
       this.mouseOver.emit(event)
     );
 
-    this.onMouseOver = function(evt: MouseEvent): void {
+    this.onMouseOver = function (evt: MouseEvent): void {
       let node = (evt.target as Element);
       if (node.classList.contains("handleNode")) {
         this.dragDisabled = true;
